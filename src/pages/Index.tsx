@@ -53,7 +53,8 @@ const Index = () => {
     { time: '16:00', event: 'Волшебный обед', icon: 'UtensilsCrossed' },
     { time: '17:30', event: 'Магические развлечения', icon: 'Wand2' },
     { time: '18:00', event: 'Торт и поздравления', icon: 'Cake' },
-    { time: '19:00', event: 'Танцы под звёздами', icon: 'Music' }
+    { time: '19:00', event: 'Танцы под звёздами', icon: 'Music' },
+    { time: '23:00', event: 'Портал домой откроется', icon: 'Orbit' }
   ];
 
   const wishlist = [
@@ -266,12 +267,30 @@ const Index = () => {
         </div>
       </section>
 
+      {/* RSVP Section */}
+      <section className="relative py-16 px-4">
+        <div className="max-w-3xl mx-auto text-center">
+          <div className="bg-dark-purple/60 backdrop-blur-sm border-2 border-gold/40 rounded-2xl p-8 md:p-12 space-y-6">
+            <Icon name="Mail" className="w-16 h-16 text-gold mx-auto animate-pulse" />
+            <h3 className="text-3xl md:text-4xl font-cinzel font-black text-gold" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>
+              Пошлите сову с ответом!
+            </h3>
+            <p className="text-xl md:text-2xl text-light-purple font-cormorant font-bold leading-relaxed" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>
+              Если вы получили это волшебное приглашение, обязательно пошлите сову имениннице с подтверждением — придёте вы на праздник или нет
+            </p>
+            <div className="pt-4">
+              <Icon name="Bird" className="w-12 h-12 text-gold/60 mx-auto animate-bounce" />
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Footer */}
       <footer className="relative py-12 px-4 text-center">
         <div className="space-y-4">
           <div className="flex items-center justify-center gap-3">
             <Icon name="Sparkles" className="w-5 h-5 text-gold animate-pulse" />
-            <p className="text-light-purple/60 font-cormorant italic">
+            <p className="text-light-purple/60 font-cormorant text-lg italic">
               До встречи в волшебном мире!
             </p>
             <Icon name="Sparkles" className="w-5 h-5 text-gold animate-pulse" />
