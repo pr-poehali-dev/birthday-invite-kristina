@@ -48,12 +48,12 @@ const Index = () => {
   ];
 
   const timeline = [
-    { time: '18:00', event: 'Прибытие гостей', icon: 'Users' },
-    { time: '18:30', event: 'Торжественное открытие', icon: 'Sparkles' },
-    { time: '19:00', event: 'Волшебный ужин', icon: 'UtensilsCrossed' },
-    { time: '20:30', event: 'Магические развлечения', icon: 'Wand2' },
-    { time: '21:00', event: 'Торт и поздравления', icon: 'Cake' },
-    { time: '22:00', event: 'Танцы под звёздами', icon: 'Music' }
+    { time: '15:00', event: 'Прибытие гостей', icon: 'Users' },
+    { time: '15:30', event: 'Торжественное открытие', icon: 'Sparkles' },
+    { time: '16:00', event: 'Волшебный обед', icon: 'UtensilsCrossed' },
+    { time: '17:30', event: 'Магические развлечения', icon: 'Wand2' },
+    { time: '18:00', event: 'Торт и поздравления', icon: 'Cake' },
+    { time: '19:00', event: 'Танцы под звёздами', icon: 'Music' }
   ];
 
   const wishlist = [
@@ -148,7 +148,7 @@ const Index = () => {
               <CardContent className="p-6 text-center space-y-3">
                 <Icon name="Clock" className="w-12 h-12 text-gold mx-auto" />
                 <h3 className="text-xl font-cinzel text-gold">Время</h3>
-                <p className="text-light-purple font-cormorant text-lg">18:00</p>
+                <p className="text-light-purple font-cormorant text-lg">15:00</p>
               </CardContent>
             </Card>
 
