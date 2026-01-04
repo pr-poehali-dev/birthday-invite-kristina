@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cormorant:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -97,5 +99,12 @@
 
   body {
     @apply bg-background text-foreground;
+    font-family: "Cormorant", serif;
+  }
+}
+
+@layer utilities {
+  .hover-scale {
+    @apply transition-transform duration-300 hover:scale-105;
   }
 }
