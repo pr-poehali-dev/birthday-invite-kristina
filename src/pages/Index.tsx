@@ -57,9 +57,8 @@ const Index = () => {
   ];
 
   const wishlist = [
-    { item: 'Вишлист на Ozon', icon: 'Gift', link: '#' },
-    { item: 'Вишлист на Wildberries', icon: 'ShoppingBag', link: '#' },
-    { item: 'Книги по магии', icon: 'BookOpen', link: '#' }
+    { item: 'Подарки из жизни маглов', icon: 'ShoppingCart', link: 'https://followish.io/mywishlist/gbxagpog0dy04x' },
+    { item: 'Подарки из волшебного мира', icon: 'Wand2', link: 'https://followish.io/mywishlist/axwdiegpcaoj01' }
   ];
 
   return (
@@ -109,11 +108,11 @@ const Index = () => {
             </div>
           </div>
 
-          <h1 className="text-6xl md:text-8xl font-cinzel font-bold text-gold drop-shadow-2xl">
+          <h1 className="text-7xl md:text-9xl font-cinzel font-black text-gold" style={{ textShadow: '3px 3px 6px rgba(0,0,0,0.7), 0 0 30px rgba(212,175,55,0.5)' }}>
             Кристина
           </h1>
           <div className="space-y-2">
-            <p className="text-2xl md:text-3xl text-light-purple font-cormorant italic">
+            <p className="text-3xl md:text-4xl text-light-purple font-cormorant font-bold italic" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.6)' }}>
               приглашает вас в волшебный мир
             </p>
             <div className="flex items-center justify-center gap-3 text-gold">
@@ -122,7 +121,7 @@ const Index = () => {
               <div className="h-px w-20 bg-gold/50" />
             </div>
           </div>
-          <p className="text-xl md:text-2xl text-light-purple/90 font-cormorant">
+          <p className="text-2xl md:text-3xl text-light-purple font-cormorant font-bold" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.6)' }}>
             на празднование дня рождения
           </p>
         </div>
@@ -131,7 +130,7 @@ const Index = () => {
       {/* Event Details */}
       <section className="relative py-20 px-4">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-cinzel font-bold text-gold text-center mb-12 animate-fade-in">
+          <h2 className="text-5xl md:text-6xl font-cinzel font-black text-gold text-center mb-12 animate-fade-in" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.5), 0 0 20px rgba(212,175,55,0.3)' }}>
             Детали события
           </h2>
           
@@ -139,24 +138,24 @@ const Index = () => {
             <Card className="bg-dark-purple/60 backdrop-blur-sm border-gold/30 hover:border-gold/60 transition-all hover-scale">
               <CardContent className="p-6 text-center space-y-3">
                 <Icon name="Calendar" className="w-12 h-12 text-gold mx-auto" />
-                <h3 className="text-xl font-cinzel text-gold">Дата</h3>
-                <p className="text-light-purple font-cormorant text-lg">12 июня 2026</p>
+                <h3 className="text-2xl font-cinzel font-bold text-gold" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>Дата</h3>
+                <p className="text-light-purple font-cormorant text-xl font-semibold" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>12 июня 2026</p>
               </CardContent>
             </Card>
 
             <Card className="bg-dark-purple/60 backdrop-blur-sm border-gold/30 hover:border-gold/60 transition-all hover-scale">
               <CardContent className="p-6 text-center space-y-3">
                 <Icon name="Clock" className="w-12 h-12 text-gold mx-auto" />
-                <h3 className="text-xl font-cinzel text-gold">Время</h3>
-                <p className="text-light-purple font-cormorant text-lg">15:00</p>
+                <h3 className="text-2xl font-cinzel font-bold text-gold" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>Время</h3>
+                <p className="text-light-purple font-cormorant text-xl font-semibold" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>15:00</p>
               </CardContent>
             </Card>
 
             <Card className="bg-dark-purple/60 backdrop-blur-sm border-gold/30 hover:border-gold/60 transition-all hover-scale">
               <CardContent className="p-6 text-center space-y-3">
                 <Icon name="MapPin" className="w-12 h-12 text-gold mx-auto" />
-                <h3 className="text-xl font-cinzel text-gold">Место</h3>
-                <p className="text-light-purple font-cormorant text-lg">Беседка, санаторий Крона</p>
+                <h3 className="text-2xl font-cinzel font-bold text-gold" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>Место</h3>
+                <p className="text-light-purple font-cormorant text-xl font-semibold" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>Беседка, санаторий Крона</p>
               </CardContent>
             </Card>
           </div>
@@ -166,7 +165,7 @@ const Index = () => {
       {/* Timeline */}
       <section className="relative py-20 px-4 bg-dark-purple/40">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-cinzel font-bold text-gold text-center mb-12">
+          <h2 className="text-5xl md:text-6xl font-cinzel font-black text-gold text-center mb-12" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.5), 0 0 20px rgba(212,175,55,0.3)' }}>
             Тайминг вечера
           </h2>
           
@@ -185,8 +184,8 @@ const Index = () => {
                   </div>
                   <div className="flex-1">
                     <div className="flex items-baseline gap-4">
-                      <span className="text-2xl font-cinzel text-gold">{item.time}</span>
-                      <span className="text-xl text-light-purple font-cormorant">{item.event}</span>
+                      <span className="text-3xl font-cinzel font-bold text-gold" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>{item.time}</span>
+                      <span className="text-2xl text-light-purple font-cormorant font-semibold" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>{item.event}</span>
                     </div>
                   </div>
                 </CardContent>
@@ -199,10 +198,10 @@ const Index = () => {
       {/* Dress Code */}
       <section className="relative py-20 px-4">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-cinzel font-bold text-gold text-center mb-6">
+          <h2 className="text-5xl md:text-6xl font-cinzel font-black text-gold text-center mb-6" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.5), 0 0 20px rgba(212,175,55,0.3)' }}>
             Дресс-код Хогвартса
           </h2>
-          <p className="text-center text-light-purple/80 font-cormorant text-lg mb-12">
+          <p className="text-center text-light-purple font-cormorant text-xl md:text-2xl font-bold mb-12" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>
             Выберите свой факультет и оденьтесь в его цветах
           </p>
           
@@ -216,12 +215,12 @@ const Index = () => {
                 <CardContent className="p-6 space-y-4">
                   <div className="text-center">
                     <Icon name="Shield" className="w-12 h-12 text-gold mx-auto mb-3" />
-                    <h3 className="text-2xl font-cinzel text-gold mb-2">{house.name}</h3>
-                    <Badge className="bg-gold/20 text-gold border-gold/40">{house.traits}</Badge>
+                    <h3 className="text-3xl font-cinzel font-bold text-gold mb-2" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>{house.name}</h3>
+                    <Badge className="bg-gold/20 text-gold border-gold/40 text-base font-semibold">{house.traits}</Badge>
                   </div>
-                  <div className="space-y-2 text-light-purple/90 font-cormorant">
-                    <p><strong className="text-gold">Цвета:</strong> {house.colors}</p>
-                    <p><strong className="text-gold">Стиль:</strong> {house.style}</p>
+                  <div className="space-y-2 text-light-purple font-cormorant text-lg font-semibold" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>
+                    <p><strong className="text-gold text-xl">Цвета:</strong> {house.colors}</p>
+                    <p><strong className="text-gold text-xl">Стиль:</strong> {house.style}</p>
                   </div>
                 </CardContent>
               </Card>
@@ -233,14 +232,17 @@ const Index = () => {
       {/* Wishlist */}
       <section className="relative py-20 px-4 bg-dark-purple/40">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-cinzel font-bold text-gold mb-6">
+          <h2 className="text-5xl md:text-6xl font-cinzel font-black text-gold mb-6" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.5), 0 0 20px rgba(212,175,55,0.3)' }}>
             Вишлист
           </h2>
-          <p className="text-light-purple/80 font-cormorant text-lg mb-12">
+          <p className="text-xl md:text-2xl text-light-purple font-cormorant font-bold mb-4" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>
             Если хотите порадовать именинницу подарком
           </p>
+          <p className="text-lg md:text-xl text-gold/90 font-cormorant font-semibold mb-12 animate-pulse" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>
+            ⚠️ Обязательно бронируйте подарки заранее!
+          </p>
           
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
             {wishlist.map((item, index) => (
               <Card 
                 key={index}
@@ -248,13 +250,15 @@ const Index = () => {
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <CardContent className="p-8 space-y-4">
-                  <Icon name={item.icon as any} className="w-12 h-12 text-gold mx-auto" />
-                  <p className="text-light-purple font-cormorant text-lg">{item.item}</p>
-                  <div className="pt-2">
-                    <span className="text-gold text-sm font-cinzel flex items-center justify-center gap-2">
-                      Перейти <Icon name="ExternalLink" className="w-4 h-4" />
-                    </span>
-                  </div>
+                  <Icon name={item.icon as any} className="w-16 h-16 text-gold mx-auto" />
+                  <p className="text-light-purple font-cormorant text-2xl font-bold" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>{item.item}</p>
+                  <a href={item.link} target="_blank" rel="noopener noreferrer" className="block">
+                    <div className="pt-2 bg-gold/20 hover:bg-gold/30 rounded-lg py-3 px-4 transition-all">
+                      <span className="text-gold text-lg font-cinzel font-bold flex items-center justify-center gap-2">
+                        Открыть вишлист <Icon name="ExternalLink" className="w-5 h-5" />
+                      </span>
+                    </div>
+                  </a>
                 </CardContent>
               </Card>
             ))}
