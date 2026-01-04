@@ -82,10 +82,33 @@ const Index = () => {
 
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center px-4 py-20">
-        <div className="text-center z-10 space-y-8 animate-fade-in">
+        <div className="text-center z-10 space-y-8 animate-fade-in max-w-4xl mx-auto">
           <div className="inline-block">
             <Icon name="Sparkles" className="w-16 h-16 text-gold mx-auto mb-4 animate-pulse" />
           </div>
+          
+          {/* Photo with magical frame */}
+          <div className="relative inline-block mb-8">
+            <div className="absolute -inset-4 bg-gradient-to-r from-gold via-light-purple to-gold rounded-full blur-xl opacity-50 animate-pulse"></div>
+            <div className="relative">
+              <div className="p-2 bg-gradient-to-br from-gold via-magic-purple to-gold rounded-full">
+                <div className="p-1 bg-dark-purple rounded-full">
+                  <img 
+                    src="https://cdn.poehali.dev/files/IMG_4568.jpeg" 
+                    alt="Кристина" 
+                    className="w-64 h-64 md:w-80 md:h-80 object-cover rounded-full border-4 border-gold/30"
+                  />
+                </div>
+              </div>
+              <div className="absolute -top-2 -right-2">
+                <Icon name="Sparkles" className="w-8 h-8 text-gold animate-pulse" />
+              </div>
+              <div className="absolute -bottom-2 -left-2">
+                <Icon name="Star" className="w-6 h-6 text-gold fill-gold animate-pulse" />
+              </div>
+            </div>
+          </div>
+
           <h1 className="text-6xl md:text-8xl font-cinzel font-bold text-gold drop-shadow-2xl">
             Кристина
           </h1>
