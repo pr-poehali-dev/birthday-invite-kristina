@@ -19,6 +19,7 @@ const Index = () => {
   const [snitchCaught, setSnitchCaught] = useState(0);
   const [showSpellBook, setShowSpellBook] = useState(false);
   const [showMagicRules, setShowMagicRules] = useState(false);
+  const [balloons, setBalloons] = useState<Array<{ id: number; left: string; delay: string; duration: string; number: string }>>([]);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const owlSoundRef = useRef<HTMLAudioElement | null>(null);
   const hatSoundRef = useRef<HTMLAudioElement | null>(null);
@@ -36,6 +37,19 @@ const Index = () => {
       setStars(newStars);
     };
     generateStars();
+
+    // Generate floating balloons with numbers 2 and 5
+    const generateBalloons = () => {
+      const newBalloons = Array.from({ length: 8 }, (_, i) => ({
+        id: i,
+        left: `${Math.random() * 90 + 5}%`,
+        delay: `${Math.random() * 5}s`,
+        duration: `${15 + Math.random() * 10}s`,
+        number: i % 2 === 0 ? '2' : '5'
+      }));
+      setBalloons(newBalloons);
+    };
+    generateBalloons();
 
     // Toggle between Kristina and McGonagall every 2 seconds
     const nameToggle = setInterval(() => {
@@ -300,6 +314,32 @@ const Index = () => {
         ))}
       </div>
 
+      {/* Flying balloons with numbers 2 and 5 */}
+      <div className="fixed inset-0 pointer-events-none overflow-hidden">
+        {balloons.map((balloon) => (
+          <div
+            key={balloon.id}
+            className="absolute animate-float-up"
+            style={{
+              left: balloon.left,
+              bottom: '-200px',
+              animationDelay: balloon.delay,
+              animationDuration: balloon.duration
+            }}
+          >
+            <div className="relative">
+              <div className={`w-24 h-32 rounded-full ${balloon.number === '2' ? 'bg-gradient-to-b from-pink-400 to-pink-600' : 'bg-gradient-to-b from-purple-400 to-purple-600'} shadow-2xl flex items-center justify-center`}>
+                <span className="text-5xl font-cinzel font-black text-white" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>
+                  {balloon.number}
+                </span>
+              </div>
+              <div className="absolute top-full left-1/2 -translate-x-1/2 w-0.5 h-16 bg-gray-400"></div>
+              <div className="absolute top-full left-1/2 -translate-x-1/2 mt-16 w-2 h-2 bg-gray-500 rounded-full"></div>
+            </div>
+          </div>
+        ))}
+      </div>
+
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center px-4 py-20">
         <div className="text-center z-10 space-y-8 animate-fade-in max-w-4xl mx-auto">
@@ -341,6 +381,9 @@ const Index = () => {
           <div className="space-y-2">
             <p className="text-3xl md:text-4xl text-light-purple font-cormorant font-bold italic" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.6)' }}>
               приглашает вас в волшебный мир
+            </p>
+            <p className="text-2xl md:text-3xl text-gold font-cinzel font-bold" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.7)' }}>
+              🎈 Юбилей - 25 лет! 🎈
             </p>
             <div className="flex items-center justify-center gap-3 text-gold">
               <div className="h-px w-20 bg-gold/50" />
