@@ -278,13 +278,13 @@ const Index = () => {
             </div>
           </div>
 
-          <h1 className="text-7xl md:text-9xl font-cinzel font-black text-gold transition-all duration-1000" style={{ textShadow: '3px 3px 6px rgba(0,0,0,0.7), 0 0 30px rgba(212,175,55,0.5)' }}>
+          <h1 className="font-cinzel font-black text-gold transition-all duration-1000" style={{ textShadow: '3px 3px 6px rgba(0,0,0,0.7), 0 0 30px rgba(212,175,55,0.5)' }}>
             {isMcGonagall ? (
-              <span className="bg-gradient-to-r from-gold via-light-purple to-gold bg-clip-text text-transparent animate-pulse">
+              <span className="text-4xl md:text-6xl bg-gradient-to-r from-gold via-light-purple to-gold bg-clip-text text-transparent animate-pulse">
                 Профессор Макгонагал
               </span>
             ) : (
-              "Кристина"
+              <span className="text-7xl md:text-9xl">Кристина</span>
             )}
           </h1>
           <div className="space-y-2">
