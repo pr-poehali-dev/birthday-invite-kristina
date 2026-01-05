@@ -28,22 +28,36 @@ const Index = () => {
     };
     generateStars();
 
-    // Hedwig's Theme from Harry Potter
-    audioRef.current = new Audio('https://cdn.pixabay.com/download/audio/2022/03/10/audio_4d8b25d75e.mp3');
+    // Magical theme music (Harry Potter style)
+    audioRef.current = new Audio('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3');
     audioRef.current.loop = true;
-    audioRef.current.volume = 0.3;
+    audioRef.current.volume = 0.25;
     
     // Auto-play music when page loads
-    const playAudio = () => {
-      audioRef.current?.play().catch(() => {
-        // If autoplay is blocked, try again on first user interaction
-        document.addEventListener('click', () => {
-          audioRef.current?.play();
-        }, { once: true });
-      });
+    const playAudio = async () => {
+      try {
+        await audioRef.current?.play();
+      } catch (error) {
+        // If autoplay is blocked, play on first user interaction
+        const handleFirstInteraction = async () => {
+          try {
+            await audioRef.current?.play();
+            document.removeEventListener('click', handleFirstInteraction);
+            document.removeEventListener('touchstart', handleFirstInteraction);
+            document.removeEventListener('keydown', handleFirstInteraction);
+          } catch (e) {
+            console.log('Audio play failed:', e);
+          }
+        };
+        
+        document.addEventListener('click', handleFirstInteraction);
+        document.addEventListener('touchstart', handleFirstInteraction);
+        document.addEventListener('keydown', handleFirstInteraction);
+      }
     };
     
-    playAudio();
+    // Delay slightly to ensure audio element is ready
+    setTimeout(playAudio, 500);
 
     return () => {
       if (audioRef.current) {
