@@ -330,7 +330,7 @@ const Index = () => {
       <section className="relative py-16 px-4 bg-dark-purple/40">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-8">
-            <h2 className="text-5xl md:text-6xl font-cinzel font-black text-gold mb-4" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.5), 0 0 20px rgba(212,175,55,0.3)' }}>
+            <h2 className="text-3xl md:text-4xl font-cinzel font-black text-gold mb-4" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.5), 0 0 20px rgba(212,175,55,0.3)' }}>
               Распределяющая Шляпа
             </h2>
             <p className="text-xl text-light-purple font-cormorant font-bold" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>
@@ -342,11 +342,11 @@ const Index = () => {
             <div className="text-center">
               <Button
                 onClick={() => setShowSortingHat(true)}
-                className="bg-gold/20 hover:bg-gold/40 border-2 border-gold text-gold font-cinzel font-bold text-xl px-8 py-6 rounded-xl hover-scale"
+                className="bg-gold/20 hover:bg-gold/40 border-2 border-gold text-gold font-cinzel font-bold text-base px-6 py-4 rounded-xl hover-scale"
               >
-                <Icon name="Sparkles" className="w-6 h-6 mr-2" />
+                <Icon name="Sparkles" className="w-5 h-5 mr-2" />
                 Надеть Распределяющую Шляпу
-                <Icon name="Sparkles" className="w-6 h-6 ml-2" />
+                <Icon name="Sparkles" className="w-5 h-5 ml-2" />
               </Button>
             </div>
           ) : !sortedHouse ? (
