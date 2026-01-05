@@ -300,6 +300,102 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Marauder's Map Section */}
+      <section className="relative py-20 px-4">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-8">
+            <h2 className="text-5xl md:text-6xl font-cinzel font-black text-gold mb-4" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.5), 0 0 20px rgba(212,175,55,0.3)' }}>
+              Карта Мародёров
+            </h2>
+            <p className="text-2xl text-light-purple font-cormorant font-bold italic" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>
+              "Торжественно клянусь, что замышляю шалость"
+            </p>
+          </div>
+
+          <div className="relative">
+            {/* Parchment-style container */}
+            <div className="bg-[#F4E8D0] rounded-lg p-6 md:p-8 shadow-2xl border-4 border-[#8B7355] relative overflow-hidden">
+              {/* Aged paper texture overlay */}
+              <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZmlsdGVyIGlkPSJub2lzZSI+PGZlVHVyYnVsZW5jZSB0eXBlPSJmcmFjdGFsTm9pc2UiIGJhc2VGcmVxdWVuY3k9IjAuOSIgbnVtT2N0YXZlcz0iNCIgc3RpdGNoVGlsZXM9InN0aXRjaCIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNub2lzZSkiIG9wYWNpdHk9IjAuMDUiLz48L3N2Zz4=')] opacity-50"></div>
+              
+              {/* Footprints decoration */}
+              <div className="absolute top-4 right-4 flex gap-2 opacity-30">
+                <Icon name="Footprints" className="w-6 h-6 text-[#8B7355]" />
+                <Icon name="Footprints" className="w-6 h-6 text-[#8B7355]" />
+              </div>
+
+              <div className="relative z-10">
+                {/* Location info */}
+                <div className="text-center mb-6 space-y-2">
+                  <h3 className="text-3xl font-cinzel font-bold text-[#2C1810]">Санаторий "Крона"</h3>
+                  <p className="text-xl font-cormorant font-semibold text-[#4A3728] flex items-center justify-center gap-2">
+                    <Icon name="MapPin" className="w-5 h-5" />
+                    г. Бердск, Новосибирская область
+                  </p>
+                </div>
+
+                {/* Interactive map */}
+                <div className="relative rounded-lg overflow-hidden border-4 border-[#8B7355] shadow-inner mb-6">
+                  <iframe
+                    src="https://yandex.ru/map-widget/v1/?um=constructor%3Ad9b5a1c8c9b2e3f4a5b6c7d8e9f0a1b2&amp;source=constructor"
+                    width="100%"
+                    height="400"
+                    frameBorder="0"
+                    className="w-full h-[400px] grayscale-[30%] sepia-[20%]"
+                    title="Карта проезда"
+                  ></iframe>
+                  {/* Map overlay with magical effect */}
+                  <div className="absolute inset-0 pointer-events-none border-2 border-[#2C1810]/20"></div>
+                </div>
+
+                {/* Wand tap instruction */}
+                <div className="text-center space-y-3">
+                  <div className="flex items-center justify-center gap-2 text-[#2C1810]">
+                    <Icon name="Wand2" className="w-6 h-6" />
+                    <p className="text-lg font-cormorant font-bold italic">
+                      Коснитесь карты волшебной палочкой для навигации
+                    </p>
+                    <Icon name="Wand2" className="w-6 h-6 rotate-180" />
+                  </div>
+                  <a 
+                    href="https://yandex.ru/maps/?text=Санаторий Крона Бердск"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block bg-[#8B7355] hover:bg-[#6B5335] text-[#F4E8D0] px-6 py-3 rounded-lg font-cinzel font-bold transition-all hover-scale"
+                  >
+                    <span className="flex items-center gap-2">
+                      <Icon name="Navigation" className="w-5 h-5" />
+                      Открыть в Яндекс.Картах
+                      <Icon name="ExternalLink" className="w-4 h-4" />
+                    </span>
+                  </a>
+                </div>
+              </div>
+
+              {/* Corner decorations */}
+              <div className="absolute top-2 left-2 w-8 h-8 border-l-2 border-t-2 border-[#2C1810]/30"></div>
+              <div className="absolute top-2 right-2 w-8 h-8 border-r-2 border-t-2 border-[#2C1810]/30"></div>
+              <div className="absolute bottom-2 left-2 w-8 h-8 border-l-2 border-b-2 border-[#2C1810]/30"></div>
+              <div className="absolute bottom-2 right-2 w-8 h-8 border-r-2 border-b-2 border-[#2C1810]/30"></div>
+            </div>
+
+            {/* Wand sparkles around the map */}
+            <div className="absolute -top-4 -left-4 animate-pulse">
+              <Icon name="Sparkles" className="w-8 h-8 text-gold" />
+            </div>
+            <div className="absolute -top-4 -right-4 animate-pulse" style={{ animationDelay: '0.5s' }}>
+              <Icon name="Sparkles" className="w-8 h-8 text-gold" />
+            </div>
+            <div className="absolute -bottom-4 -left-4 animate-pulse" style={{ animationDelay: '1s' }}>
+              <Icon name="Sparkles" className="w-8 h-8 text-gold" />
+            </div>
+            <div className="absolute -bottom-4 -right-4 animate-pulse" style={{ animationDelay: '1.5s' }}>
+              <Icon name="Sparkles" className="w-8 h-8 text-gold" />
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* RSVP Section */}
       <section className="relative py-16 px-4">
         <div className="max-w-3xl mx-auto text-center">
