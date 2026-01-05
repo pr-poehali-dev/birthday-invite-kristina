@@ -351,24 +351,29 @@ const Index = () => {
                 </defs>
                 
                 {balloon.number === '2' ? (
-                  <path 
-                    d="M 30 30 Q 30 10, 50 10 Q 70 10, 70 30 Q 70 50, 50 60 L 70 90 Q 70 100, 60 100 L 30 100 Q 20 100, 20 90 L 50 60 Q 30 50, 30 30 Z" 
-                    fill={`url(#goldGradient${balloon.id})`}
-                    stroke="#DAA520"
-                    strokeWidth="2"
-                    filter={`url(#shine${balloon.id})`}
-                  />
+                  <>
+                    <path 
+                      d="M 25 35 Q 25 15, 45 10 Q 65 10, 70 25 Q 72 35, 65 45 Q 55 55, 40 65 L 70 95 L 70 110 L 25 110 L 25 95 L 50 70 Q 65 60, 68 50 Q 70 40, 65 32 Q 60 25, 50 25 Q 40 25, 38 32 Q 36 38, 40 45 L 25 50 Q 20 42, 20 32 Q 20 20, 30 12 Q 40 5, 55 10 Q 75 15, 78 35 Q 80 50, 70 60 L 78 95 Q 78 110, 70 115 L 25 115 Q 20 115, 20 110 L 20 100 L 60 60 Q 70 50, 70 35 Q 68 22, 55 18 Q 40 15, 30 25 Q 25 30, 25 35 Z" 
+                      fill={`url(#goldGradient${balloon.id})`}
+                      stroke="#DAA520"
+                      strokeWidth="3"
+                      filter={`url(#shine${balloon.id})`}
+                    />
+                    <ellipse cx="55" cy="35" rx="12" ry="20" fill="rgba(255, 255, 255, 0.5)" opacity="0.7" />
+                  </>
                 ) : (
-                  <path 
-                    d="M 30 10 Q 40 10, 40 20 L 40 40 Q 40 50, 50 50 Q 60 50, 60 60 L 60 90 Q 60 100, 50 100 Q 40 100, 40 90 L 40 60 L 30 60 Q 20 60, 20 50 L 50 50 L 50 20 Q 50 10, 60 10 L 70 10" 
-                    fill={`url(#goldGradient${balloon.id})`}
-                    stroke="#DAA520"
-                    strokeWidth="2"
-                    filter={`url(#shine${balloon.id})`}
-                  />
+                  <>
+                    <path 
+                      d="M 25 25 Q 30 15, 40 12 Q 52 10, 58 15 L 58 35 L 42 35 L 42 20 Q 45 18, 50 18 Q 58 18, 60 25 L 48 25 L 48 50 Q 48 58, 55 60 Q 65 62, 68 70 L 68 95 Q 68 108, 58 112 Q 48 115, 40 110 Q 32 105, 32 95 L 45 95 Q 45 102, 50 105 Q 55 107, 58 102 Q 60 98, 60 92 L 60 72 Q 58 68, 52 67 Q 40 65, 35 55 Q 32 48, 32 38 L 65 38 Q 70 38, 70 32 L 70 20 Q 68 10, 55 8 Q 40 6, 30 15 Q 22 22, 22 32 L 35 32 Q 35 25, 40 20 L 40 35 L 32 35 Q 28 35, 25 32 L 25 25 Z" 
+                      fill={`url(#goldGradient${balloon.id})`}
+                      stroke="#DAA520"
+                      strokeWidth="3"
+                      filter={`url(#shine${balloon.id})`}
+                    />
+                    <ellipse cx="55" cy="50" rx="10" ry="18" fill="rgba(255, 255, 255, 0.5)" opacity="0.7" />
+                  </>
                 )}
                 
-                <ellipse cx="60" cy="40" rx="15" ry="25" fill="rgba(255, 255, 255, 0.4)" opacity="0.6" />
               </svg>
               
               <div className="absolute top-full left-1/2 -translate-x-1/2 w-0.5 h-20 bg-gold/60"></div>
