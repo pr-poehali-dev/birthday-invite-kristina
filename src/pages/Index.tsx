@@ -29,7 +29,7 @@ const Index = () => {
     };
     generateStars();
 
-    audioRef.current = new Audio('https://cdn.poehali.dev/files/hedwig-theme.mp3');
+    audioRef.current = new Audio('https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Kevin_MacLeod/Impact/Kevin_MacLeod_-_Mystical_Theme.mp3');
     audioRef.current.loop = true;
     audioRef.current.volume = 0.3;
 
