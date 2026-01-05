@@ -339,14 +339,21 @@ const Index = () => {
           </div>
 
           {!showSortingHat ? (
-            <div className="text-center">
+            <div className="text-center space-y-6">
+              <div className="max-w-xs mx-auto mb-4">
+                <img 
+                  src="https://cdn.poehali.dev/projects/8fcac141-9992-4fa7-88d4-e8c8df86bc00/files/545bcb61-a0ef-420e-a355-2be57246a49f.jpg" 
+                  alt="Распределяющая Шляпа" 
+                  className="w-full h-auto rounded-xl border-2 border-gold/30 shadow-2xl"
+                />
+              </div>
               <Button
                 onClick={() => setShowSortingHat(true)}
-                className="bg-gold/20 hover:bg-gold/40 border-2 border-gold text-gold font-cinzel font-bold text-base px-6 py-4 rounded-xl hover-scale"
+                className="bg-gold/20 hover:bg-gold/40 border-2 border-gold text-gold font-cinzel font-bold text-sm px-5 py-3 rounded-xl hover-scale"
               >
-                <Icon name="Sparkles" className="w-5 h-5 mr-2" />
+                <Icon name="Sparkles" className="w-4 h-4 mr-2" />
                 Надеть Распределяющую Шляпу
-                <Icon name="Sparkles" className="w-5 h-5 ml-2" />
+                <Icon name="Sparkles" className="w-4 h-4 ml-2" />
               </Button>
             </div>
           ) : !sortedHouse ? (
