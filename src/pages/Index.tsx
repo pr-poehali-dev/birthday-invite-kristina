@@ -133,7 +133,7 @@ const Index = () => {
   };
 
   const calculateTimeLeft = () => {
-    const eventDate = new Date('2026-06-12T15:00:00');
+    const eventDate = new Date('2026-06-13T15:00:00');
     const now = new Date();
     const difference = eventDate.getTime() - now.getTime();
 
@@ -428,7 +428,7 @@ const Index = () => {
               <CardContent className="p-6 text-center space-y-3">
                 <Icon name="Calendar" className="w-12 h-12 text-gold mx-auto" />
                 <h3 className="text-2xl font-cinzel font-bold text-gold" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>Дата</h3>
-                <p className="text-light-purple font-cormorant text-xl font-semibold" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>12 июня 2026</p>
+                <p className="text-light-purple font-cormorant text-xl font-semibold" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>13 июня 2026</p>
               </CardContent>
             </Card>
 
