@@ -287,4 +287,19 @@
   .animate-float-up {
     animation: float-up linear infinite;
   }
+
+  /* Foil balloon shimmer effect */
+  .foil-balloon svg {
+    animation: foil-shimmer 3s ease-in-out infinite;
+  }
+
+  @keyframes foil-shimmer {
+    0%,
+    100% {
+      filter: drop-shadow(0 10px 25px rgba(212, 175, 55, 0.5)) brightness(1);
+    }
+    50% {
+      filter: drop-shadow(0 10px 35px rgba(255, 215, 0, 0.8)) brightness(1.2);
+    }
+  }
 }

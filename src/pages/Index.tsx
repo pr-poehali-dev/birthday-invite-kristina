@@ -314,7 +314,7 @@ const Index = () => {
         ))}
       </div>
 
-      {/* Flying balloons with numbers 2 and 5 */}
+      {/* Flying foil balloons shaped as numbers 2 and 5 */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
         {balloons.map((balloon) => (
           <div
@@ -322,19 +322,57 @@ const Index = () => {
             className="absolute animate-float-up"
             style={{
               left: balloon.left,
-              bottom: '-200px',
+              bottom: '-300px',
               animationDelay: balloon.delay,
               animationDuration: balloon.duration
             }}
           >
-            <div className="relative">
-              <div className={`w-24 h-32 rounded-full ${balloon.number === '2' ? 'bg-gradient-to-b from-pink-400 to-pink-600' : 'bg-gradient-to-b from-purple-400 to-purple-600'} shadow-2xl flex items-center justify-center`}>
-                <span className="text-5xl font-cinzel font-black text-white" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>
-                  {balloon.number}
-                </span>
-              </div>
-              <div className="absolute top-full left-1/2 -translate-x-1/2 w-0.5 h-16 bg-gray-400"></div>
-              <div className="absolute top-full left-1/2 -translate-x-1/2 mt-16 w-2 h-2 bg-gray-500 rounded-full"></div>
+            <div className="relative foil-balloon">
+              <svg viewBox="0 0 120 180" className="w-32 h-48 drop-shadow-2xl" style={{ filter: 'drop-shadow(0 10px 25px rgba(212, 175, 55, 0.5))' }}>
+                <defs>
+                  <linearGradient id={`goldGradient${balloon.id}`} x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style={{ stopColor: '#FFD700', stopOpacity: 1 }} />
+                    <stop offset="25%" style={{ stopColor: '#FFF8DC', stopOpacity: 1 }} />
+                    <stop offset="50%" style={{ stopColor: '#FFD700', stopOpacity: 1 }} />
+                    <stop offset="75%" style={{ stopColor: '#DAA520', stopOpacity: 1 }} />
+                    <stop offset="100%" style={{ stopColor: '#B8860B', stopOpacity: 1 }} />
+                  </linearGradient>
+                  <filter id={`shine${balloon.id}`}>
+                    <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
+                    <feOffset dx="2" dy="2" result="offsetblur"/>
+                    <feComponentTransfer>
+                      <feFuncA type="linear" slope="0.5"/>
+                    </feComponentTransfer>
+                    <feMerge>
+                      <feMergeNode/>
+                      <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                  </filter>
+                </defs>
+                
+                {balloon.number === '2' ? (
+                  <path 
+                    d="M 30 30 Q 30 10, 50 10 Q 70 10, 70 30 Q 70 50, 50 60 L 70 90 Q 70 100, 60 100 L 30 100 Q 20 100, 20 90 L 50 60 Q 30 50, 30 30 Z" 
+                    fill={`url(#goldGradient${balloon.id})`}
+                    stroke="#DAA520"
+                    strokeWidth="2"
+                    filter={`url(#shine${balloon.id})`}
+                  />
+                ) : (
+                  <path 
+                    d="M 30 10 Q 40 10, 40 20 L 40 40 Q 40 50, 50 50 Q 60 50, 60 60 L 60 90 Q 60 100, 50 100 Q 40 100, 40 90 L 40 60 L 30 60 Q 20 60, 20 50 L 50 50 L 50 20 Q 50 10, 60 10 L 70 10" 
+                    fill={`url(#goldGradient${balloon.id})`}
+                    stroke="#DAA520"
+                    strokeWidth="2"
+                    filter={`url(#shine${balloon.id})`}
+                  />
+                )}
+                
+                <ellipse cx="60" cy="40" rx="15" ry="25" fill="rgba(255, 255, 255, 0.4)" opacity="0.6" />
+              </svg>
+              
+              <div className="absolute top-full left-1/2 -translate-x-1/2 w-0.5 h-20 bg-gold/60"></div>
+              <div className="absolute top-full left-1/2 -translate-x-1/2 mt-20 w-3 h-3 bg-gold rounded-full shadow-lg"></div>
             </div>
           </div>
         ))}
