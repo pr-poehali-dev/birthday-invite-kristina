@@ -7,7 +7,6 @@ import Icon from '@/components/ui/icon';
 
 const Index = () => {
   const [stars, setStars] = useState<Array<{ id: number; left: string; top: string; delay: string; duration: string }>>([]);
-  const [isPlaying, setIsPlaying] = useState(false);
   const [spellInput, setSpellInput] = useState('');
   const [isSecretRevealed, setIsSecretRevealed] = useState(false);
   const [showSortingHat, setShowSortingHat] = useState(false);
@@ -29,9 +28,22 @@ const Index = () => {
     };
     generateStars();
 
-    audioRef.current = new Audio('https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Kevin_MacLeod/Impact/Kevin_MacLeod_-_Mystical_Theme.mp3');
+    // Hedwig's Theme from Harry Potter
+    audioRef.current = new Audio('https://cdn.pixabay.com/download/audio/2022/03/10/audio_4d8b25d75e.mp3');
     audioRef.current.loop = true;
     audioRef.current.volume = 0.3;
+    
+    // Auto-play music when page loads
+    const playAudio = () => {
+      audioRef.current?.play().catch(() => {
+        // If autoplay is blocked, try again on first user interaction
+        document.addEventListener('click', () => {
+          audioRef.current?.play();
+        }, { once: true });
+      });
+    };
+    
+    playAudio();
 
     return () => {
       if (audioRef.current) {
@@ -41,16 +53,7 @@ const Index = () => {
     };
   }, []);
 
-  const toggleMusic = () => {
-    if (audioRef.current) {
-      if (isPlaying) {
-        audioRef.current.pause();
-      } else {
-        audioRef.current.play();
-      }
-      setIsPlaying(!isPlaying);
-    }
-  };
+
 
   const checkSpell = () => {
     const correctSpells = ['алохомора', 'alohomora', 'люмос', 'lumos'];
@@ -185,15 +188,6 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-dark-purple via-secondary-purple to-dark-purple relative overflow-hidden">
-      {/* Music Control Button */}
-      <button
-        onClick={toggleMusic}
-        className="fixed top-6 right-6 z-50 bg-gold/20 hover:bg-gold/40 backdrop-blur-sm border-2 border-gold rounded-full p-4 transition-all hover-scale"
-        aria-label="Toggle music"
-      >
-        <Icon name={isPlaying ? "Volume2" : "VolumeX"} className="w-6 h-6 text-gold" />
-      </button>
-
       {/* Countdown Timer */}
       <div className="fixed top-6 left-6 z-50 bg-dark-purple/80 backdrop-blur-sm border-2 border-gold/50 rounded-xl p-4 shadow-2xl">
         <div className="text-center space-y-2">
