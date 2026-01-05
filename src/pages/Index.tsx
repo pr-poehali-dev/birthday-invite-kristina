@@ -476,6 +476,158 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Magical Zones */}
+      <section className="relative py-20 px-4 bg-dark-purple/40">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-5xl md:text-6xl font-cinzel font-black text-gold text-center mb-6" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.5), 0 0 20px rgba(212,175,55,0.3)' }}>
+            Волшебные зоны праздника
+          </h2>
+          <p className="text-center text-light-purple font-cormorant text-xl md:text-2xl font-bold mb-12" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>
+            Каждая зона полна магии и сюрпризов
+          </p>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Zone 1: Вкусная еда */}
+            <Card className="bg-secondary-purple/40 backdrop-blur-sm border-gold/30 hover:border-gold/60 transition-all hover-scale animate-fade-in overflow-hidden group">
+              <div className="relative h-64 overflow-hidden">
+                <img 
+                  src="https://cdn.poehali.dev/projects/8fcac141-9992-4fa7-88d4-e8c8df86bc00/files/bc235a87-9a39-4f9e-9496-a8d349121743.jpg" 
+                  alt="Вкусная еда" 
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-dark-purple via-transparent to-transparent"></div>
+                <div className="absolute top-4 right-4">
+                  <Icon name="UtensilsCrossed" className="w-8 h-8 text-gold animate-pulse" />
+                </div>
+              </div>
+              <CardContent className="p-6">
+                <h3 className="text-2xl font-cinzel font-bold text-gold mb-2" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>
+                  Вкусная еда
+                </h3>
+                <p className="text-light-purple font-cormorant text-lg" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>
+                  Волшебный пир с изысканными угощениями достойными Большого Зала Хогвартса
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* Zone 2: Послание в будущее */}
+            <Card className="bg-secondary-purple/40 backdrop-blur-sm border-gold/30 hover:border-gold/60 transition-all hover-scale animate-fade-in overflow-hidden group" style={{ animationDelay: '0.1s' }}>
+              <div className="relative h-64 overflow-hidden">
+                <img 
+                  src="https://cdn.poehali.dev/projects/8fcac141-9992-4fa7-88d4-e8c8df86bc00/files/69adc289-62b1-4caa-81af-0b68e49d8481.jpg" 
+                  alt="Послание в будущее" 
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-dark-purple via-transparent to-transparent"></div>
+                <div className="absolute top-4 right-4">
+                  <Icon name="Mail" className="w-8 h-8 text-gold animate-pulse" />
+                </div>
+              </div>
+              <CardContent className="p-6">
+                <h3 className="text-2xl font-cinzel font-bold text-gold mb-2" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>
+                  Послание имениннице в будущее
+                </h3>
+                <p className="text-light-purple font-cormorant text-lg" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>
+                  Напиши магическое пожелание перьом на пергаменте для именинницы
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* Zone 3: Фотозона */}
+            <Card className="bg-secondary-purple/40 backdrop-blur-sm border-gold/30 hover:border-gold/60 transition-all hover-scale animate-fade-in overflow-hidden group" style={{ animationDelay: '0.2s' }}>
+              <div className="relative h-64 overflow-hidden">
+                <img 
+                  src="https://cdn.poehali.dev/projects/8fcac141-9992-4fa7-88d4-e8c8df86bc00/files/fb3bf6f2-f02c-4ff2-8395-f26e5231d41e.jpg" 
+                  alt="Фотозона" 
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-dark-purple via-transparent to-transparent"></div>
+                <div className="absolute top-4 right-4">
+                  <Icon name="Camera" className="w-8 h-8 text-gold animate-pulse" />
+                </div>
+              </div>
+              <CardContent className="p-6">
+                <h3 className="text-2xl font-cinzel font-bold text-gold mb-2" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>
+                  Фотозона
+                </h3>
+                <p className="text-light-purple font-cormorant text-lg" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>
+                  Запечатлей волшебные моменты с магическими реквизитами и декорациями
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* Zone 4: Мастер-классы */}
+            <Card className="bg-secondary-purple/40 backdrop-blur-sm border-gold/30 hover:border-gold/60 transition-all hover-scale animate-fade-in overflow-hidden group" style={{ animationDelay: '0.3s' }}>
+              <div className="relative h-64 overflow-hidden">
+                <img 
+                  src="https://cdn.poehali.dev/projects/8fcac141-9992-4fa7-88d4-e8c8df86bc00/files/7e0a5d72-c8d3-47e7-924d-76b1fd5b82f4.jpg" 
+                  alt="Мастер-классы" 
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-dark-purple via-transparent to-transparent"></div>
+                <div className="absolute top-4 right-4">
+                  <Icon name="Wand2" className="w-8 h-8 text-gold animate-pulse" />
+                </div>
+              </div>
+              <CardContent className="p-6">
+                <h3 className="text-2xl font-cinzel font-bold text-gold mb-2" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>
+                  Волшебные мастер-классы
+                </h3>
+                <p className="text-light-purple font-cormorant text-lg" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>
+                  Создай свою волшебную палочку и освой магические ремесла
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* Zone 5: Фотограф */}
+            <Card className="bg-secondary-purple/40 backdrop-blur-sm border-gold/30 hover:border-gold/60 transition-all hover-scale animate-fade-in overflow-hidden group" style={{ animationDelay: '0.4s' }}>
+              <div className="relative h-64 overflow-hidden">
+                <img 
+                  src="https://cdn.poehali.dev/projects/8fcac141-9992-4fa7-88d4-e8c8df86bc00/files/475a419e-4db2-44d7-ae9e-ef4a187ccc64.jpg" 
+                  alt="Фотограф" 
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-dark-purple via-transparent to-transparent"></div>
+                <div className="absolute top-4 right-4">
+                  <Icon name="Camera" className="w-8 h-8 text-gold animate-pulse" />
+                </div>
+              </div>
+              <CardContent className="p-6">
+                <h3 className="text-2xl font-cinzel font-bold text-gold mb-2" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>
+                  Фотозона и Фотограф
+                </h3>
+                <p className="text-light-purple font-cormorant text-lg" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>
+                  Профессиональный волшебник с камерой запечатлит все магические моменты
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* Zone 6: Викторина */}
+            <Card className="bg-secondary-purple/40 backdrop-blur-sm border-gold/30 hover:border-gold/60 transition-all hover-scale animate-fade-in overflow-hidden group" style={{ animationDelay: '0.5s' }}>
+              <div className="relative h-64 overflow-hidden">
+                <img 
+                  src="https://cdn.poehali.dev/projects/8fcac141-9992-4fa7-88d4-e8c8df86bc00/files/3cee5c94-f03d-40d4-9906-7db85c7ee2d8.jpg" 
+                  alt="Викторина" 
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-dark-purple via-transparent to-transparent"></div>
+                <div className="absolute top-4 right-4">
+                  <Icon name="Trophy" className="w-8 h-8 text-gold animate-pulse" />
+                </div>
+              </div>
+              <CardContent className="p-6">
+                <h3 className="text-2xl font-cinzel font-bold text-gold mb-2" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>
+                  Весёлая викторина и не только
+                </h3>
+                <p className="text-light-purple font-cormorant text-lg" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>
+                  Проверь свои знания о волшебном мире и выиграй магические призы
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
       {/* Dress Code */}
       <section className="relative py-20 px-4">
         <div className="max-w-6xl mx-auto">
