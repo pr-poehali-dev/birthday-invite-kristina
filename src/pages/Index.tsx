@@ -1,10 +1,20 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import Icon from '@/components/ui/icon';
 
 const Index = () => {
   const [stars, setStars] = useState<Array<{ id: number; left: string; top: string; delay: string; duration: string }>>([]);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [spellInput, setSpellInput] = useState('');
+  const [isSecretRevealed, setIsSecretRevealed] = useState(false);
+  const [showSortingHat, setShowSortingHat] = useState(false);
+  const [sortedHouse, setSortedHouse] = useState<string | null>(null);
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [answers, setAnswers] = useState<number[]>([]);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
     const generateStars = () => {
@@ -18,6 +28,117 @@ const Index = () => {
       setStars(newStars);
     };
     generateStars();
+
+    audioRef.current = new Audio('https://cdn.poehali.dev/files/hedwig-theme.mp3');
+    audioRef.current.loop = true;
+    audioRef.current.volume = 0.3;
+
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current = null;
+      }
+    };
+  }, []);
+
+  const toggleMusic = () => {
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.pause();
+      } else {
+        audioRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
+
+  const checkSpell = () => {
+    const correctSpells = ['алохомора', 'alohomora', 'люмос', 'lumos'];
+    if (correctSpells.includes(spellInput.toLowerCase().trim())) {
+      setIsSecretRevealed(true);
+      setSpellInput('');
+    } else {
+      alert('Неправильное заклинание! Попробуйте ещё раз... 🪄');
+      setSpellInput('');
+    }
+  };
+
+  const sortingQuestions = [
+    {
+      question: 'Какое качество для вас важнее всего?',
+      options: [
+        { text: 'Храбрость', house: 0 },
+        { text: 'Ум', house: 1 },
+        { text: 'Честность', house: 2 },
+        { text: 'Амбиции', house: 3 }
+      ]
+    },
+    {
+      question: 'Как вы проводите свободное время?',
+      options: [
+        { text: 'Приключения и спорт', house: 0 },
+        { text: 'Чтение и учёба', house: 1 },
+        { text: 'Помощь друзьям', house: 2 },
+        { text: 'Работаю над целями', house: 3 }
+      ]
+    },
+    {
+      question: 'Что вы выберете в сложной ситуации?',
+      options: [
+        { text: 'Действовать смело', house: 0 },
+        { text: 'Обдумать решение', house: 1 },
+        { text: 'Попросить совета', house: 2 },
+        { text: 'Найти выгоду', house: 3 }
+      ]
+    }
+  ];
+
+  const handleAnswer = (houseIndex: number) => {
+    const newAnswers = [...answers, houseIndex];
+    setAnswers(newAnswers);
+
+    if (currentQuestion < sortingQuestions.length - 1) {
+      setCurrentQuestion(currentQuestion + 1);
+    } else {
+      const houseCounts = [0, 0, 0, 0];
+      newAnswers.forEach(a => houseCounts[a]++);
+      const maxIndex = houseCounts.indexOf(Math.max(...houseCounts));
+      const houseNames = ['Гриффиндор', 'Когтевран', 'Пуффендуй', 'Слизерин'];
+      setSortedHouse(houseNames[maxIndex]);
+    }
+  };
+
+  const resetSorting = () => {
+    setCurrentQuestion(0);
+    setAnswers([]);
+    setSortedHouse(null);
+    setShowSortingHat(false);
+  };
+
+  const calculateTimeLeft = () => {
+    const eventDate = new Date('2026-06-12T15:00:00');
+    const now = new Date();
+    const difference = eventDate.getTime() - now.getTime();
+
+    if (difference > 0) {
+      return {
+        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+        minutes: Math.floor((difference / 1000 / 60) % 60),
+        seconds: Math.floor((difference / 1000) % 60)
+      };
+    }
+    return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+  };
+
+  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft(calculateTimeLeft());
+    }, 1000);
+
+    return () => clearInterval(timer);
   }, []);
 
   const houses = [
@@ -64,6 +185,39 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-dark-purple via-secondary-purple to-dark-purple relative overflow-hidden">
+      {/* Music Control Button */}
+      <button
+        onClick={toggleMusic}
+        className="fixed top-6 right-6 z-50 bg-gold/20 hover:bg-gold/40 backdrop-blur-sm border-2 border-gold rounded-full p-4 transition-all hover-scale"
+        aria-label="Toggle music"
+      >
+        <Icon name={isPlaying ? "Volume2" : "VolumeX"} className="w-6 h-6 text-gold" />
+      </button>
+
+      {/* Countdown Timer */}
+      <div className="fixed top-6 left-6 z-50 bg-dark-purple/80 backdrop-blur-sm border-2 border-gold/50 rounded-xl p-4 shadow-2xl">
+        <div className="text-center space-y-2">
+          <p className="text-gold font-cinzel text-sm font-bold flex items-center gap-2">
+            <Icon name="Clock" className="w-4 h-4" />
+            До праздника
+          </p>
+          <div className="flex gap-2 text-light-purple">
+            <div className="flex flex-col items-center bg-magic-purple/30 rounded-lg p-2 min-w-[50px]">
+              <span className="text-2xl font-cinzel font-bold text-gold">{timeLeft.days}</span>
+              <span className="text-xs font-cormorant">дней</span>
+            </div>
+            <div className="flex flex-col items-center bg-magic-purple/30 rounded-lg p-2 min-w-[50px]">
+              <span className="text-2xl font-cinzel font-bold text-gold">{timeLeft.hours}</span>
+              <span className="text-xs font-cormorant">часов</span>
+            </div>
+            <div className="flex flex-col items-center bg-magic-purple/30 rounded-lg p-2 min-w-[50px]">
+              <span className="text-2xl font-cinzel font-bold text-gold">{timeLeft.minutes}</span>
+              <span className="text-xs font-cormorant">минут</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Animated stars */}
       <div className="fixed inset-0 pointer-events-none">
         {stars.map((star) => (
@@ -125,6 +279,125 @@ const Index = () => {
           <p className="text-2xl md:text-3xl text-light-purple font-cormorant font-bold" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.6)' }}>
             на празднование дня рождения
           </p>
+        </div>
+      </section>
+
+      {/* Secret Section with Spell */}
+      <section className="relative py-16 px-4">
+        <div className="max-w-2xl mx-auto text-center">
+          {!isSecretRevealed ? (
+            <div className="bg-dark-purple/70 backdrop-blur-sm border-2 border-gold/30 rounded-2xl p-8 space-y-6">
+              <Icon name="Lock" className="w-16 h-16 text-gold mx-auto animate-pulse" />
+              <h3 className="text-3xl font-cinzel font-black text-gold" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>
+                Секретное послание
+              </h3>
+              <p className="text-xl text-light-purple font-cormorant font-bold" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>
+                Произнесите заклинание открытия, чтобы узнать секрет...
+              </p>
+              <div className="flex gap-3 max-w-md mx-auto">
+                <Input
+                  type="text"
+                  placeholder="Введите заклинание..."
+                  value={spellInput}
+                  onChange={(e) => setSpellInput(e.target.value)}
+                  onKeyPress={(e) => e.key === 'Enter' && checkSpell()}
+                  className="bg-magic-purple/30 border-gold/40 text-light-purple placeholder:text-light-purple/50 font-cormorant text-lg"
+                />
+                <Button
+                  onClick={checkSpell}
+                  className="bg-gold/20 hover:bg-gold/40 border-2 border-gold text-gold font-cinzel font-bold"
+                >
+                  <Icon name="Wand2" className="w-5 h-5" />
+                </Button>
+              </div>
+              <p className="text-sm text-gold/70 font-cormorant italic">Подсказка: заклинание открытия дверей</p>
+            </div>
+          ) : (
+            <div className="bg-gradient-to-br from-gold/20 to-magic-purple/40 backdrop-blur-sm border-2 border-gold rounded-2xl p-8 space-y-4 animate-fade-in">
+              <Icon name="Unlock" className="w-16 h-16 text-gold mx-auto animate-pulse" />
+              <h3 className="text-3xl font-cinzel font-black text-gold" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>
+                Секрет раскрыт! 🎉
+              </h3>
+              <p className="text-2xl text-light-purple font-cormorant font-bold leading-relaxed" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>
+                На празднике будет особый сюрприз для тех, кто придёт в лучшем костюме! Главный приз — волшебная награда от именинницы ✨
+              </p>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Sorting Hat Section */}
+      <section className="relative py-16 px-4 bg-dark-purple/40">
+        <div className="max-w-3xl mx-auto">
+          <div className="text-center mb-8">
+            <h2 className="text-5xl md:text-6xl font-cinzel font-black text-gold mb-4" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.5), 0 0 20px rgba(212,175,55,0.3)' }}>
+              Распределяющая Шляпа
+            </h2>
+            <p className="text-xl text-light-purple font-cormorant font-bold" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>
+              Узнай свой факультет в Хогвартсе!
+            </p>
+          </div>
+
+          {!showSortingHat ? (
+            <div className="text-center">
+              <Button
+                onClick={() => setShowSortingHat(true)}
+                className="bg-gold/20 hover:bg-gold/40 border-2 border-gold text-gold font-cinzel font-bold text-xl px-8 py-6 rounded-xl hover-scale"
+              >
+                <Icon name="Sparkles" className="w-6 h-6 mr-2" />
+                Надеть Распределяющую Шляпу
+                <Icon name="Sparkles" className="w-6 h-6 ml-2" />
+              </Button>
+            </div>
+          ) : !sortedHouse ? (
+            <Card className="bg-secondary-purple/40 backdrop-blur-sm border-gold/30">
+              <CardContent className="p-8 space-y-6">
+                <div className="text-center">
+                  <Icon name="GraduationCap" className="w-20 h-20 text-gold mx-auto mb-4 animate-pulse" />
+                  <h3 className="text-2xl font-cinzel font-bold text-gold mb-4">
+                    {sortingQuestions[currentQuestion].question}
+                  </h3>
+                </div>
+                <div className="grid md:grid-cols-2 gap-4">
+                  {sortingQuestions[currentQuestion].options.map((option, idx) => (
+                    <Button
+                      key={idx}
+                      onClick={() => handleAnswer(option.house)}
+                      className="bg-dark-purple/60 hover:bg-gold/30 border-2 border-gold/40 hover:border-gold text-light-purple hover:text-gold font-cormorant font-bold text-lg py-6 transition-all hover-scale"
+                    >
+                      {option.text}
+                    </Button>
+                  ))}
+                </div>
+                <div className="flex justify-center gap-2 pt-4">
+                  {sortingQuestions.map((_, idx) => (
+                    <div
+                      key={idx}
+                      className={`w-3 h-3 rounded-full ${idx <= currentQuestion ? 'bg-gold' : 'bg-gold/20'}`}
+                    />
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          ) : (
+            <Card className="bg-gradient-to-br from-gold/30 to-magic-purple/50 backdrop-blur-sm border-4 border-gold animate-fade-in">
+              <CardContent className="p-12 space-y-6 text-center">
+                <Icon name="Award" className="w-24 h-24 text-gold mx-auto animate-pulse" />
+                <h3 className="text-4xl md:text-5xl font-cinzel font-black text-gold" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>
+                  {sortedHouse}!
+                </h3>
+                <p className="text-2xl text-light-purple font-cormorant font-bold leading-relaxed" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>
+                  Шляпа определила твой факультет! Носи его цвета с гордостью на празднике! 🎓✨
+                </p>
+                <Button
+                  onClick={resetSorting}
+                  className="bg-gold/20 hover:bg-gold/40 border-2 border-gold text-gold font-cinzel font-bold mt-6"
+                >
+                  Пройти ещё раз
+                </Button>
+              </CardContent>
+            </Card>
+          )}
         </div>
       </section>
 
