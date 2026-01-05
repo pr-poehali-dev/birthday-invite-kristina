@@ -49,11 +49,11 @@ const Index = () => {
 
   const timeline = [
     { time: '15:00', event: 'Прибытие гостей', icon: 'Users' },
-    { time: '15:30', event: 'Торжественное открытие', icon: 'Sparkles' },
-    { time: '16:00', event: 'Волшебный обед', icon: 'UtensilsCrossed' },
-    { time: '17:30', event: 'Магические развлечения', icon: 'Wand2' },
-    { time: '18:00', event: 'Торт и поздравления', icon: 'Cake' },
-    { time: '19:00', event: 'Танцы под звёздами', icon: 'Music' },
+    { time: '16:00', event: 'Торжественное открытие', icon: 'Sparkles' },
+    { time: '17:00', event: 'Волшебный обед', icon: 'UtensilsCrossed' },
+    { time: '19:00', event: 'Магические развлечения', icon: 'Wand2' },
+    { time: '20:30', event: 'Торт и поздравления', icon: 'Cake' },
+    { time: '21:30', event: 'Танцы под звёздами', icon: 'Music' },
     { time: '23:00', event: 'Портал домой откроется', icon: 'Orbit' }
   ];
 
@@ -202,11 +202,18 @@ const Index = () => {
           <h2 className="text-5xl md:text-6xl font-cinzel font-black text-gold text-center mb-6" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.5), 0 0 20px rgba(212,175,55,0.3)' }}>
             Дресс-код Хогвартса
           </h2>
-          <p className="text-center text-light-purple font-cormorant text-xl md:text-2xl font-bold mb-12" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>
+          <p className="text-center text-light-purple font-cormorant text-xl md:text-2xl font-bold mb-4" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>
             Выберите свой факультет и оденьтесь в его цветах
           </p>
+          <div className="text-center mb-12">
+            <p className="text-lg md:text-xl text-gold font-cormorant font-bold inline-flex items-center justify-center gap-2 animate-pulse" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>
+              <Icon name="Award" className="w-6 h-6" />
+              Или выберите образ любимого персонажа и выиграйте главный приз в конкурсе костюмов!
+              <Icon name="Award" className="w-6 h-6" />
+            </p>
+          </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             {houses.map((house, index) => (
               <Card 
                 key={index}
@@ -226,6 +233,33 @@ const Index = () => {
                 </CardContent>
               </Card>
             ))}
+          </div>
+
+          {/* Photo Grid with Color Circles */}
+          <div className="max-w-3xl mx-auto">
+            <div className="grid grid-cols-2 gap-3 mb-8">
+              <div className="aspect-square overflow-hidden rounded-2xl border-2 border-gold/30 hover:border-gold/60 transition-all hover-scale">
+                <img src="https://cdn.poehali.dev/files/IMG_0791.jpeg" alt="Хогвартс" className="w-full h-full object-cover" />
+              </div>
+              <div className="aspect-square overflow-hidden rounded-2xl border-2 border-gold/30 hover:border-gold/60 transition-all hover-scale">
+                <img src="https://cdn.poehali.dev/files/IMG_0790.jpeg" alt="Волшебники" className="w-full h-full object-cover" />
+              </div>
+              <div className="aspect-square overflow-hidden rounded-2xl border-2 border-gold/30 hover:border-gold/60 transition-all hover-scale">
+                <img src="https://cdn.poehali.dev/files/IMG_0789.jpeg" alt="Урок магии" className="w-full h-full object-cover" />
+              </div>
+              <div className="aspect-square overflow-hidden rounded-2xl border-2 border-gold/30 hover:border-gold/60 transition-all hover-scale">
+                <img src="https://cdn.poehali.dev/files/IMG_0788.jpeg" alt="Травология" className="w-full h-full object-cover" />
+              </div>
+            </div>
+
+            {/* Color Palette Circles */}
+            <div className="flex items-center justify-center gap-4 flex-wrap">
+              <div className="w-16 h-16 rounded-full bg-[#740001] border-4 border-gold/50 hover-scale" title="Гриффиндор - Красный"></div>
+              <div className="w-16 h-16 rounded-full bg-[#D4AF37] border-4 border-gold/50 hover-scale" title="Золотой"></div>
+              <div className="w-16 h-16 rounded-full bg-[#1A472A] border-4 border-gold/50 hover-scale" title="Слизерин - Зелёный"></div>
+              <div className="w-16 h-16 rounded-full bg-[#0E1A40] border-4 border-gold/50 hover-scale" title="Когтевран - Синий"></div>
+              <div className="w-16 h-16 rounded-full bg-[#FFD800] border-4 border-gold/50 hover-scale" title="Пуффендуй - Жёлтый"></div>
+            </div>
           </div>
         </div>
       </section>
@@ -281,6 +315,40 @@ const Index = () => {
             <div className="pt-4">
               <Icon name="Bird" className="w-12 h-12 text-gold/60 mx-auto animate-bounce" />
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Magical Chat Section */}
+      <section className="relative py-16 px-4 bg-dark-purple/40">
+        <div className="max-w-3xl mx-auto text-center">
+          <div className="bg-gradient-to-br from-magic-purple/60 to-dark-purple/60 backdrop-blur-sm border-2 border-gold/50 rounded-2xl p-8 md:p-12 space-y-6">
+            <div className="flex items-center justify-center gap-3">
+              <Icon name="MessageCircle" className="w-12 h-12 text-gold animate-pulse" />
+              <h3 className="text-3xl md:text-4xl font-cinzel font-black text-gold" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>
+                Волшебный чат гостей
+              </h3>
+              <Icon name="Sparkles" className="w-12 h-12 text-gold animate-pulse" />
+            </div>
+            <p className="text-xl md:text-2xl text-light-purple font-cormorant font-bold leading-relaxed" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>
+              Для тех, кто точно будет в этот день с нами, есть волшебный чат!
+              <br />
+              Скорее вступай и не пропусти всё самое важное 🪄
+            </p>
+            <a 
+              href="https://t.me/+ueXQ5PBXV0tiNzZi" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-block"
+            >
+              <div className="bg-gold/20 hover:bg-gold/40 border-2 border-gold rounded-xl py-4 px-8 transition-all hover-scale">
+                <span className="text-gold text-2xl font-cinzel font-bold flex items-center justify-center gap-3">
+                  <Icon name="Send" className="w-7 h-7" />
+                  Вступить в чат
+                  <Icon name="ExternalLink" className="w-6 h-6" />
+                </span>
+              </div>
+            </a>
           </div>
         </div>
       </section>
