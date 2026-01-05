@@ -974,48 +974,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Voldemort Section - Dark Ending */}
-      <section className="relative py-16 px-4 bg-gradient-to-b from-dark-purple to-black">
-        <div className="max-w-2xl mx-auto text-center">
-          <div 
-            onClick={() => {
-              avadaSoundRef.current?.play();
-              setTimeout(() => window.close(), 1000);
-            }}
-            className="cursor-pointer group transition-all hover-scale"
-          >
-            <div className="relative inline-block mb-6">
-              <div className="absolute -inset-4 bg-gradient-to-r from-green-500/30 via-red-500/30 to-green-500/30 rounded-full blur-2xl opacity-50 group-hover:opacity-80 transition-opacity animate-pulse"></div>
-              <div className="relative">
-                <img 
-                  src="https://cdn.poehali.dev/projects/8fcac141-9992-4fa7-88d4-e8c8df86bc00/files/2ac50b8e-2fac-4645-a069-ce06f1022f1e.jpg" 
-                  alt="Волан-де-Морт" 
-                  className="w-64 h-64 md:w-80 md:h-80 object-cover rounded-full border-4 border-red-900/50 group-hover:border-red-500 transition-all shadow-2xl"
-                />
-              </div>
-              <div className="absolute -top-2 -right-2 group-hover:animate-spin">
-                <Icon name="Skull" className="w-12 h-12 text-red-500 opacity-80" />
-              </div>
-            </div>
-            
-            <div className="space-y-4">
-              <h3 className="text-5xl md:text-6xl font-cinzel font-black text-red-500 group-hover:text-red-400 transition-colors animate-pulse" 
-                  style={{ textShadow: '3px 3px 10px rgba(220,38,38,0.8), 0 0 30px rgba(34,197,94,0.5)' }}>
-                АВАДА КЕДАВРА
-              </h3>
-              <p className="text-xl text-red-300/80 font-cormorant font-bold italic opacity-0 group-hover:opacity-100 transition-opacity">
-                Кликни, чтобы закрыть портал...
-              </p>
-              <div className="flex justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                <Icon name="Zap" className="w-6 h-6 text-green-500 animate-pulse" />
-                <Icon name="Zap" className="w-6 h-6 text-green-500 animate-pulse" style={{ animationDelay: '0.2s' }} />
-                <Icon name="Zap" className="w-6 h-6 text-green-500 animate-pulse" style={{ animationDelay: '0.4s' }} />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Moving Portraits Section */}
       <section className="relative py-16 px-4 bg-dark-purple/40">
         <div className="max-w-4xl mx-auto">
@@ -1200,6 +1158,48 @@ const Index = () => {
           </div>
         </div>
       </footer>
+
+      {/* Voldemort Section - Dark Ending */}
+      <section className="relative py-16 px-4 bg-gradient-to-b from-black to-black">
+        <div className="max-w-2xl mx-auto text-center">
+          <div 
+            onClick={() => {
+              avadaSoundRef.current?.play();
+              setTimeout(() => window.close(), 1000);
+            }}
+            className="cursor-pointer group transition-all hover-scale"
+          >
+            <div className="relative inline-block mb-6">
+              <div className="absolute -inset-4 bg-gradient-to-r from-green-500/30 via-red-500/30 to-green-500/30 rounded-full blur-2xl opacity-50 group-hover:opacity-80 transition-opacity animate-pulse"></div>
+              <div className="relative">
+                <img 
+                  src="https://cdn.poehali.dev/projects/8fcac141-9992-4fa7-88d4-e8c8df86bc00/files/2ac50b8e-2fac-4645-a069-ce06f1022f1e.jpg" 
+                  alt="Волан-де-Морт" 
+                  className="w-64 h-64 md:w-80 md:h-80 object-cover rounded-full border-4 border-red-900/50 group-hover:border-red-500 transition-all shadow-2xl"
+                />
+              </div>
+              <div className="absolute -top-2 -right-2 group-hover:animate-spin">
+                <Icon name="Skull" className="w-12 h-12 text-red-500 opacity-80" />
+              </div>
+            </div>
+            
+            <div className="space-y-4">
+              <h3 className="text-5xl md:text-6xl font-cinzel font-black text-red-500 group-hover:text-red-400 transition-colors animate-pulse" 
+                  style={{ textShadow: '3px 3px 10px rgba(220,38,38,0.8), 0 0 30px rgba(34,197,94,0.5)' }}>
+                АВАДА КЕДАВРА
+              </h3>
+              <p className="text-xl text-red-300/80 font-cormorant font-bold italic opacity-0 group-hover:opacity-100 transition-opacity">
+                Кликни, чтобы закрыть портал...
+              </p>
+              <div className="flex justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                <Icon name="Zap" className="w-6 h-6 text-green-500 animate-pulse" />
+                <Icon name="Zap" className="w-6 h-6 text-green-500 animate-pulse" style={{ animationDelay: '0.2s' }} />
+                <Icon name="Zap" className="w-6 h-6 text-green-500 animate-pulse" style={{ animationDelay: '0.4s' }} />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
