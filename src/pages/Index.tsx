@@ -181,7 +181,7 @@ const Index = () => {
   }, []);
 
   // Snitch game logic
-  const moveSn itch = () => {
+  const moveSnitch = () => {
     setSnitchPosition({
       x: Math.random() * 80 + 10,
       y: Math.random() * 80 + 10
@@ -191,12 +191,12 @@ const Index = () => {
   const catchSnitch = () => {
     setSnitchCaught(prev => prev + 1);
     hatSoundRef.current?.play();
-    moveSn itch();
+    moveSnitch();
   };
 
   useEffect(() => {
     if (showSnitchGame) {
-      const snitchTimer = setInterval(moveSn itch, 2000);
+      const snitchTimer = setInterval(moveSnitch, 2000);
       return () => clearInterval(snitchTimer);
     }
   }, [showSnitchGame]);
