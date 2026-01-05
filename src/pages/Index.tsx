@@ -14,7 +14,15 @@ const Index = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<number[]>([]);
   const [isMcGonagall, setIsMcGonagall] = useState(false);
+  const [showSnitchGame, setShowSnitchGame] = useState(false);
+  const [snitchPosition, setSnitchPosition] = useState({ x: 50, y: 50 });
+  const [snitchCaught, setSnitchCaught] = useState(0);
+  const [showSpellBook, setShowSpellBook] = useState(false);
+  const [showMagicRules, setShowMagicRules] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const owlSoundRef = useRef<HTMLAudioElement | null>(null);
+  const hatSoundRef = useRef<HTMLAudioElement | null>(null);
+  const avadaSoundRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
     const generateStars = () => {
@@ -65,6 +73,11 @@ const Index = () => {
     // Delay slightly to ensure audio element is ready
     setTimeout(playAudio, 500);
 
+    // Sound effects setup
+    owlSoundRef.current = new Audio('https://www.soundjay.com/nature/sounds/owl-sound-2.mp3');
+    hatSoundRef.current = new Audio('https://www.soundjay.com/misc/sounds/magic-chime-01.mp3');
+    avadaSoundRef.current = new Audio('https://www.soundjay.com/misc/sounds/magic-power-up-01.mp3');
+
     return () => {
       clearInterval(nameToggle);
       if (audioRef.current) {
@@ -79,6 +92,7 @@ const Index = () => {
   const checkSpell = () => {
     const correctSpells = ['алохомора', 'alohomora', 'люмос', 'lumos'];
     if (correctSpells.includes(spellInput.toLowerCase().trim())) {
+      owlSoundRef.current?.play();
       setIsSecretRevealed(true);
       setSpellInput('');
     } else {
@@ -124,6 +138,7 @@ const Index = () => {
     if (currentQuestion < sortingQuestions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
     } else {
+      hatSoundRef.current?.play();
       const houseCounts = [0, 0, 0, 0];
       newAnswers.forEach(a => houseCounts[a]++);
       const maxIndex = houseCounts.indexOf(Math.max(...houseCounts));
@@ -164,6 +179,42 @@ const Index = () => {
 
     return () => clearInterval(timer);
   }, []);
+
+  // Snitch game logic
+  const moveSn itch = () => {
+    setSnitchPosition({
+      x: Math.random() * 80 + 10,
+      y: Math.random() * 80 + 10
+    });
+  };
+
+  const catchSnitch = () => {
+    setSnitchCaught(prev => prev + 1);
+    hatSoundRef.current?.play();
+    moveSn itch();
+  };
+
+  useEffect(() => {
+    if (showSnitchGame) {
+      const snitchTimer = setInterval(moveSn itch, 2000);
+      return () => clearInterval(snitchTimer);
+    }
+  }, [showSnitchGame]);
+
+  // Add to calendar function
+  const addToCalendar = () => {
+    const event = {
+      title: 'День Рождения Кристины - Хогвартс',
+      description: 'Волшебный праздник в стиле Гарри Поттера',
+      location: 'Беседка, санаторий Крона, г. Бердск',
+      startDate: '2026-06-13T15:00:00',
+      endDate: '2026-06-13T23:00:00'
+    };
+    
+    const googleCalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(event.title)}&details=${encodeURIComponent(event.description)}&location=${encodeURIComponent(event.location)}&dates=${event.startDate.replace(/[-:]/g, '')}/${event.endDate.replace(/[-:]/g, '')}`;
+    
+    window.open(googleCalUrl, '_blank');
+  };
 
   const houses = [
     {
@@ -927,7 +978,10 @@ const Index = () => {
       <section className="relative py-16 px-4 bg-gradient-to-b from-dark-purple to-black">
         <div className="max-w-2xl mx-auto text-center">
           <div 
-            onClick={() => window.close()}
+            onClick={() => {
+              avadaSoundRef.current?.play();
+              setTimeout(() => window.close(), 1000);
+            }}
             className="cursor-pointer group transition-all hover-scale"
           >
             <div className="relative inline-block mb-6">
@@ -959,6 +1013,178 @@ const Index = () => {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Moving Portraits Section */}
+      <section className="relative py-16 px-4 bg-dark-purple/40">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-cinzel font-black text-gold text-center mb-12" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.5), 0 0 20px rgba(212,175,55,0.3)' }}>
+            Портретная галерея Хогвартса
+          </h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="moving-portrait bg-dark-purple/60 rounded-xl border-4 border-gold/40 p-4 overflow-hidden">
+              <img 
+                src="https://cdn.poehali.dev/projects/8fcac141-9992-4fa7-88d4-e8c8df86bc00/files/01500e9e-1522-45a7-b97c-a476088f32f8.jpg"
+                alt="Волшебный портрет"
+                className="w-full h-80 object-cover rounded-lg"
+              />
+              <p className="text-gold font-cinzel font-bold text-center mt-3">Профессор Альбус</p>
+            </div>
+            <div className="moving-portrait bg-dark-purple/60 rounded-xl border-4 border-gold/40 p-4 overflow-hidden">
+              <img 
+                src="https://cdn.poehali.dev/projects/8fcac141-9992-4fa7-88d4-e8c8df86bc00/files/20732063-5aad-4541-9bfe-f97c0752c87c.jpg"
+                alt="Волшебный портрет"
+                className="w-full h-80 object-cover rounded-lg"
+              />
+              <p className="text-gold font-cinzel font-bold text-center mt-3">Профессор Минерва</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Snitch Game Section */}
+      <section className="relative py-16 px-4">
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="text-4xl md:text-5xl font-cinzel font-black text-gold mb-6" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.5), 0 0 20px rgba(212,175,55,0.3)' }}>
+            Поймай золотой снитч!
+          </h2>
+          {!showSnitchGame ? (
+            <Button
+              onClick={() => {
+                setShowSnitchGame(true);
+                setSnitchCaught(0);
+              }}
+              className="bg-gold/20 hover:bg-gold/40 border-2 border-gold text-gold font-cinzel font-bold text-xl px-8 py-6"
+            >
+              <Icon name="Circle" className="w-6 h-6 mr-2" />
+              Начать игру
+            </Button>
+          ) : (
+            <div className="relative bg-dark-purple/60 rounded-xl border-2 border-gold/50 p-8 min-h-[400px]">
+              <div className="text-center mb-4">
+                <p className="text-2xl text-gold font-cinzel font-bold">Поймано: {snitchCaught}</p>
+                <Button
+                  onClick={() => setShowSnitchGame(false)}
+                  className="mt-2 bg-red-500/20 hover:bg-red-500/40 text-red-400 border border-red-500"
+                >
+                  Закончить игру
+                </Button>
+              </div>
+              <div
+                onClick={catchSnitch}
+                className="snitch-flying absolute w-12 h-12 cursor-pointer transition-all hover:scale-125"
+                style={{ left: `${snitchPosition.x}%`, top: `${snitchPosition.y}%` }}
+              >
+                <div className="relative">
+                  <div className="absolute inset-0 bg-gold rounded-full animate-pulse"></div>
+                  <Icon name="Circle" className="w-12 h-12 text-gold relative z-10" />
+                  <div className="absolute top-0 -left-2 w-6 h-2 bg-gold/50 rounded-full"></div>
+                  <div className="absolute top-0 -right-2 w-6 h-2 bg-gold/50 rounded-full"></div>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Spell Book Section */}
+      <section className="relative py-16 px-4 bg-dark-purple/40">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-8">
+            <h2 className="text-4xl md:text-5xl font-cinzel font-black text-gold mb-4" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.5), 0 0 20px rgba(212,175,55,0.3)' }}>
+              Книга заклинаний
+            </h2>
+            <Button
+              onClick={() => setShowSpellBook(!showSpellBook)}
+              className="bg-gold/20 hover:bg-gold/40 border-2 border-gold text-gold font-cinzel font-bold"
+            >
+              <Icon name="Book" className="w-5 h-5 mr-2" />
+              {showSpellBook ? 'Закрыть книгу' : 'Открыть книгу'}
+            </Button>
+          </div>
+          
+          {showSpellBook && (
+            <div className="grid md:grid-cols-2 gap-6 animate-fade-in">
+              {[
+                { spell: 'Люмос', desc: 'Зажигает свет на конце волшебной палочки', icon: 'Lightbulb' },
+                { spell: 'Алохомора', desc: 'Открывает запертые двери и окна', icon: 'Key' },
+                { spell: 'Экспекто Патронум', desc: 'Вызывает Патронуса для защиты', icon: 'Shield' },
+                { spell: 'Вингардиум Левиоса', desc: 'Заставляет предметы левитировать', icon: 'MoveUp' },
+                { spell: 'Экспеллиармус', desc: 'Обезоруживает противника', icon: 'Zap' },
+                { spell: 'Репаро', desc: 'Чинит сломанные предметы', icon: 'Wrench' }
+              ].map((item, idx) => (
+                <Card key={idx} className="bg-secondary-purple/40 border-gold/30 hover:border-gold/60 transition-all hover-scale group">
+                  <CardContent className="p-6 relative overflow-hidden">
+                    <div className="patronus-effect absolute top-0 right-0 w-20 h-20">
+                      <Icon name="Sparkles" className="w-full h-full text-blue-300/50" />
+                    </div>
+                    <div className="flex items-start gap-4">
+                      <Icon name={item.icon as any} className="w-10 h-10 text-gold flex-shrink-0" />
+                      <div>
+                        <h3 className="text-2xl font-cinzel font-bold text-gold mb-2">{item.spell}</h3>
+                        <p className="text-light-purple font-cormorant text-lg">{item.desc}</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Magic Rules Section */}
+      <section className="relative py-16 px-4">
+        <div className="max-w-3xl mx-auto">
+          <div className="text-center mb-8">
+            <h2 className="text-4xl md:text-5xl font-cinzel font-black text-gold mb-4" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.5), 0 0 20px rgba(212,175,55,0.3)' }}>
+              Магические правила праздника
+            </h2>
+            <Button
+              onClick={() => setShowMagicRules(!showMagicRules)}
+              className="bg-gold/20 hover:bg-gold/40 border-2 border-gold text-gold font-cinzel font-bold"
+            >
+              <Icon name="ScrollText" className="w-5 h-5 mr-2" />
+              {showMagicRules ? 'Свернуть свиток' : 'Развернуть свиток'}
+            </Button>
+          </div>
+
+          {showMagicRules && (
+            <Card className="bg-[#F4E8D0] border-4 border-[#8B7355] animate-fade-in">
+              <CardContent className="p-8 space-y-4">
+                {[
+                  { rule: 'Дресс-код обязателен', desc: 'Приходите в образе своего любимого персонажа или в цветах факультета', icon: 'Users' },
+                  { rule: 'Магглам вход воспрещён', desc: '...шутка! Все маглы приглашаются в волшебный мир', icon: 'Smile' },
+                  { rule: 'Принеси хорошее настроение', desc: 'Это самое важное заклинание вечера!', icon: 'Heart' },
+                  { rule: 'Запрещённые заклинания', desc: 'Непростительные заклинания оставьте дома... особенно Авада Кедавра', icon: 'Ban' },
+                  { rule: 'Фотографируйтесь', desc: 'Запечатлейте магические моменты в фотозоне!', icon: 'Camera' },
+                  { rule: 'Веселитесь от души', desc: 'Танцуйте, играйте и наслаждайтесь волшебством!', icon: 'Sparkles' }
+                ].map((item, idx) => (
+                  <div key={idx} className="flex items-start gap-4 p-4 bg-white/30 rounded-lg">
+                    <Icon name={item.icon as any} className="w-8 h-8 text-[#8B7355] flex-shrink-0 mt-1" />
+                    <div>
+                      <h3 className="text-xl font-cinzel font-bold text-[#2C1810] mb-1">{item.rule}</h3>
+                      <p className="text-[#4A3728] font-cormorant text-lg">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </CardContent>
+            </Card>
+          )}
+        </div>
+      </section>
+
+      {/* Add to Calendar Button */}
+      <section className="relative py-8 px-4">
+        <div className="max-w-md mx-auto text-center">
+          <Button
+            onClick={addToCalendar}
+            className="w-full bg-gold/20 hover:bg-gold/40 border-2 border-gold text-gold font-cinzel font-bold text-lg py-6"
+          >
+            <Icon name="Calendar" className="w-6 h-6 mr-2" />
+            Добавить в календарь
+          </Button>
         </div>
       </section>
 

@@ -172,4 +172,96 @@
     animation: footsteps-walk-3 7s ease-in-out infinite;
     animation-delay: 4s;
   }
+
+  /* Patronus effect */
+  @keyframes patronus-float {
+    0%,
+    100% {
+      transform: translate(0, 0) scale(1);
+      opacity: 0.3;
+    }
+    25% {
+      transform: translate(20px, -30px) scale(1.1);
+      opacity: 0.6;
+    }
+    50% {
+      transform: translate(-10px, -50px) scale(1.2);
+      opacity: 0.8;
+    }
+    75% {
+      transform: translate(30px, -70px) scale(1.1);
+      opacity: 0.6;
+    }
+  }
+
+  .patronus-effect {
+    position: absolute;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  .group:hover .patronus-effect {
+    animation: patronus-float 3s ease-in-out infinite;
+    opacity: 1;
+  }
+
+  /* Portrait movement */
+  @keyframes portrait-move {
+    0%,
+    100% {
+      transform: translate(0, 0);
+    }
+    25% {
+      transform: translate(-5px, -3px);
+    }
+    50% {
+      transform: translate(3px, 5px);
+    }
+    75% {
+      transform: translate(-3px, 3px);
+    }
+  }
+
+  @keyframes portrait-blink {
+    0%,
+    90%,
+    100% {
+      opacity: 1;
+    }
+    95% {
+      opacity: 0.3;
+    }
+  }
+
+  .moving-portrait {
+    animation: portrait-move 8s ease-in-out infinite;
+  }
+
+  .moving-portrait img {
+    animation: portrait-blink 6s ease-in-out infinite;
+  }
+
+  /* Snitch game */
+  @keyframes snitch-fly {
+    0% {
+      transform: translate(0, 0) rotate(0deg);
+    }
+    25% {
+      transform: translate(100px, -80px) rotate(90deg);
+    }
+    50% {
+      transform: translate(-50px, -120px) rotate(180deg);
+    }
+    75% {
+      transform: translate(80px, -60px) rotate(270deg);
+    }
+    100% {
+      transform: translate(0, 0) rotate(360deg);
+    }
+  }
+
+  .snitch-flying {
+    animation: snitch-fly 3s ease-in-out infinite;
+  }
 }
