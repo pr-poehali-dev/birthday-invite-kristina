@@ -43,9 +43,9 @@ const Index = () => {
     }, 2000);
 
     // Magical theme music (Harry Potter style)
-    audioRef.current = new Audio('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3');
+    audioRef.current = new Audio('https://cdn.poehali.dev/projects/8fcac141-9992-4fa7-88d4-e8c8df86bc00/files/harry-potter-theme.mp3');
     audioRef.current.loop = true;
-    audioRef.current.volume = 0.25;
+    audioRef.current.volume = 0.3;
     
     // Auto-play music when page loads
     const playAudio = async () => {
