@@ -258,7 +258,6 @@ const Index = () => {
               <div className="w-16 h-16 rounded-full bg-[#D4AF37] border-4 border-gold/50 hover-scale" title="Золотой"></div>
               <div className="w-16 h-16 rounded-full bg-[#1A472A] border-4 border-gold/50 hover-scale" title="Слизерин - Зелёный"></div>
               <div className="w-16 h-16 rounded-full bg-[#0E1A40] border-4 border-gold/50 hover-scale" title="Когтевран - Синий"></div>
-              <div className="w-16 h-16 rounded-full bg-[#FFD800] border-4 border-gold/50 hover-scale" title="Пуффендуй - Жёлтый"></div>
             </div>
           </div>
         </div>
