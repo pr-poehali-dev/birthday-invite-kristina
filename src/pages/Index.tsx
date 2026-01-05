@@ -14,7 +14,10 @@ const Index = () => {
   const [sortedHouse, setSortedHouse] = useState<string | null>(null);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<number[]>([]);
+  const [showAudioUpload, setShowAudioUpload] = useState(false);
+  const [customAudioUrl, setCustomAudioUrl] = useState<string | null>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
     const generateStars = () => {
@@ -29,7 +32,8 @@ const Index = () => {
     };
     generateStars();
 
-    audioRef.current = new Audio('https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Kevin_MacLeod/Impact/Kevin_MacLeod_-_Mystical_Theme.mp3');
+    const audioUrl = customAudioUrl || 'https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Kevin_MacLeod/Impact/Kevin_MacLeod_-_Mystical_Theme.mp3';
+    audioRef.current = new Audio(audioUrl);
     audioRef.current.loop = true;
     audioRef.current.volume = 0.3;
 
@@ -39,7 +43,7 @@ const Index = () => {
         audioRef.current = null;
       }
     };
-  }, []);
+  }, [customAudioUrl]);
 
   const toggleMusic = () => {
     if (audioRef.current) {
@@ -49,6 +53,19 @@ const Index = () => {
         audioRef.current.play();
       }
       setIsPlaying(!isPlaying);
+    }
+  };
+
+  const handleAudioUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file && file.type.startsWith('audio/')) {
+      const url = URL.createObjectURL(file);
+      setCustomAudioUrl(url);
+      setShowAudioUpload(false);
+      if (isPlaying && audioRef.current) {
+        audioRef.current.pause();
+        setIsPlaying(false);
+      }
     }
   };
 
@@ -185,14 +202,58 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-dark-purple via-secondary-purple to-dark-purple relative overflow-hidden">
-      {/* Music Control Button */}
-      <button
-        onClick={toggleMusic}
-        className="fixed top-6 right-6 z-50 bg-gold/20 hover:bg-gold/40 backdrop-blur-sm border-2 border-gold rounded-full p-4 transition-all hover-scale"
-        aria-label="Toggle music"
-      >
-        <Icon name={isPlaying ? "Volume2" : "VolumeX"} className="w-6 h-6 text-gold" />
-      </button>
+      {/* Music Control Buttons */}
+      <div className="fixed top-6 right-6 z-50 flex gap-2">
+        <button
+          onClick={toggleMusic}
+          className="bg-gold/20 hover:bg-gold/40 backdrop-blur-sm border-2 border-gold rounded-full p-4 transition-all hover-scale"
+          aria-label="Toggle music"
+        >
+          <Icon name={isPlaying ? "Volume2" : "VolumeX"} className="w-6 h-6 text-gold" />
+        </button>
+        <button
+          onClick={() => setShowAudioUpload(!showAudioUpload)}
+          className="bg-gold/20 hover:bg-gold/40 backdrop-blur-sm border-2 border-gold rounded-full p-4 transition-all hover-scale"
+          aria-label="Upload audio"
+        >
+          <Icon name="Upload" className="w-6 h-6 text-gold" />
+        </button>
+      </div>
+
+      {/* Audio Upload Panel */}
+      {showAudioUpload && (
+        <div className="fixed top-24 right-6 z-50 bg-dark-purple/90 backdrop-blur-sm border-2 border-gold/50 rounded-xl p-6 shadow-2xl max-w-sm animate-fade-in">
+          <div className="space-y-4">
+            <div className="flex items-center gap-2">
+              <Icon name="Music" className="w-5 h-5 text-gold" />
+              <h3 className="text-gold font-cinzel font-bold text-lg">Загрузить музыку</h3>
+            </div>
+            <p className="text-light-purple font-cormorant text-sm">
+              Загрузите свой аудиофайл для фоновой музыки
+            </p>
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="audio/*"
+              onChange={handleAudioUpload}
+              className="hidden"
+            />
+            <Button
+              onClick={() => fileInputRef.current?.click()}
+              className="w-full bg-gold/20 hover:bg-gold/40 border-2 border-gold text-gold font-cinzel font-bold"
+            >
+              <Icon name="FileAudio" className="w-4 h-4 mr-2" />
+              Выбрать файл
+            </Button>
+            {customAudioUrl && (
+              <div className="flex items-center gap-2 text-sm text-light-purple/80">
+                <Icon name="CheckCircle" className="w-4 h-4 text-gold" />
+                <span>Свой файл загружен</span>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
 
       {/* Countdown Timer */}
       <div className="fixed top-6 left-6 z-50 bg-dark-purple/80 backdrop-blur-sm border-2 border-gold/50 rounded-xl p-4 shadow-2xl">
