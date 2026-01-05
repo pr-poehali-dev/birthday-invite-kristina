@@ -13,6 +13,7 @@ const Index = () => {
   const [sortedHouse, setSortedHouse] = useState<string | null>(null);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<number[]>([]);
+  const [isMcGonagall, setIsMcGonagall] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
@@ -27,6 +28,11 @@ const Index = () => {
       setStars(newStars);
     };
     generateStars();
+
+    // Toggle between Kristina and McGonagall every 2 seconds
+    const nameToggle = setInterval(() => {
+      setIsMcGonagall(prev => !prev);
+    }, 2000);
 
     // Magical theme music (Harry Potter style)
     audioRef.current = new Audio('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3');
@@ -60,6 +66,7 @@ const Index = () => {
     setTimeout(playAudio, 500);
 
     return () => {
+      clearInterval(nameToggle);
       if (audioRef.current) {
         audioRef.current.pause();
         audioRef.current = null;
@@ -256,9 +263,9 @@ const Index = () => {
               <div className="p-2 bg-gradient-to-br from-gold via-magic-purple to-gold rounded-full">
                 <div className="p-1 bg-dark-purple rounded-full">
                   <img 
-                    src="https://cdn.poehali.dev/files/IMG_4568.jpeg" 
-                    alt="Кристина" 
-                    className="w-64 h-64 md:w-80 md:h-80 object-cover rounded-full border-4 border-gold/30"
+                    src={isMcGonagall ? "https://cdn.poehali.dev/projects/8fcac141-9992-4fa7-88d4-e8c8df86bc00/files/54bc7bf1-32c8-43bb-bf92-9c299e18673a.jpg" : "https://cdn.poehali.dev/files/IMG_4568.jpeg"}
+                    alt={isMcGonagall ? "Профессор Макгонагал" : "Кристина"}
+                    className="w-64 h-64 md:w-80 md:h-80 object-cover rounded-full border-4 border-gold/30 transition-all duration-1000"
                   />
                 </div>
               </div>
@@ -271,8 +278,14 @@ const Index = () => {
             </div>
           </div>
 
-          <h1 className="text-7xl md:text-9xl font-cinzel font-black text-gold" style={{ textShadow: '3px 3px 6px rgba(0,0,0,0.7), 0 0 30px rgba(212,175,55,0.5)' }}>
-            Кристина
+          <h1 className="text-7xl md:text-9xl font-cinzel font-black text-gold transition-all duration-1000" style={{ textShadow: '3px 3px 6px rgba(0,0,0,0.7), 0 0 30px rgba(212,175,55,0.5)' }}>
+            {isMcGonagall ? (
+              <span className="bg-gradient-to-r from-gold via-light-purple to-gold bg-clip-text text-transparent animate-pulse">
+                Профессор Макгонагал
+              </span>
+            ) : (
+              "Кристина"
+            )}
           </h1>
           <div className="space-y-2">
             <p className="text-3xl md:text-4xl text-light-purple font-cormorant font-bold italic" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.6)' }}>
