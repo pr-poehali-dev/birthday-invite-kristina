@@ -528,7 +528,7 @@ const Index = () => {
                   Послание имениннице в будущее
                 </h3>
                 <p className="text-light-purple font-cormorant text-lg" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>
-                  Напиши магическое пожелание перьом на пергаменте для именинницы
+                  Оставь магическое пожелание для именинницы, которое она получит в будущем
                 </p>
               </CardContent>
             </Card>
@@ -574,7 +574,7 @@ const Index = () => {
                   Волшебные мастер-классы
                 </h3>
                 <p className="text-light-purple font-cormorant text-lg" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>
-                  Создай свою волшебную палочку и освой магические ремесла
+                  Освой магические ремесла и создай волшебные артефакты своими руками
                 </p>
               </CardContent>
             </Card>
