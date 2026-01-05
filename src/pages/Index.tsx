@@ -318,10 +318,32 @@ const Index = () => {
               {/* Aged paper texture overlay */}
               <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZmlsdGVyIGlkPSJub2lzZSI+PGZlVHVyYnVsZW5jZSB0eXBlPSJmcmFjdGFsTm9pc2UiIGJhc2VGcmVxdWVuY3k9IjAuOSIgbnVtT2N0YXZlcz0iNCIgc3RpdGNoVGlsZXM9InN0aXRjaCIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNub2lzZSkiIG9wYWNpdHk9IjAuMDUiLz48L3N2Zz4=')] opacity-50"></div>
               
-              {/* Footprints decoration */}
-              <div className="absolute top-4 right-4 flex gap-2 opacity-30">
-                <Icon name="Footprints" className="w-6 h-6 text-[#8B7355]" />
-                <Icon name="Footprints" className="w-6 h-6 text-[#8B7355]" />
+              {/* Animated Footprints - Marauder's Map style */}
+              <div className="absolute top-[15%] left-[10%] animate-footsteps-1">
+                <Icon name="Footprints" className="w-6 h-6 text-[#8B7355]/60" />
+              </div>
+              <div className="absolute top-[20%] left-[15%] animate-footsteps-1" style={{ animationDelay: '0.3s' }}>
+                <Icon name="Footprints" className="w-6 h-6 text-[#8B7355]/60 rotate-12" />
+              </div>
+              <div className="absolute top-[25%] left-[20%] animate-footsteps-1" style={{ animationDelay: '0.6s' }}>
+                <Icon name="Footprints" className="w-6 h-6 text-[#8B7355]/60 -rotate-6" />
+              </div>
+
+              <div className="absolute top-[60%] right-[20%] animate-footsteps-2">
+                <Icon name="Footprints" className="w-5 h-5 text-[#6B5335]/50 rotate-45" />
+              </div>
+              <div className="absolute top-[55%] right-[25%] animate-footsteps-2" style={{ animationDelay: '0.4s' }}>
+                <Icon name="Footprints" className="w-5 h-5 text-[#6B5335]/50 rotate-[60deg]" />
+              </div>
+
+              <div className="absolute bottom-[20%] left-[40%] animate-footsteps-3">
+                <Icon name="Footprints" className="w-5 h-5 text-[#4A3728]/40 -rotate-12" />
+              </div>
+              <div className="absolute bottom-[25%] left-[45%] animate-footsteps-3" style={{ animationDelay: '0.5s' }}>
+                <Icon name="Footprints" className="w-5 h-5 text-[#4A3728]/40 rotate-6" />
+              </div>
+              <div className="absolute bottom-[30%] left-[50%] animate-footsteps-3" style={{ animationDelay: '1s' }}>
+                <Icon name="Footprints" className="w-5 h-5 text-[#4A3728]/40 -rotate-3" />
               </div>
 
               <div className="relative z-10">

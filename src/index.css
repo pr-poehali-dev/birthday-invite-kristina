@@ -107,4 +107,69 @@
   .hover-scale {
     @apply transition-transform duration-300 hover:scale-105;
   }
+
+  @keyframes footsteps-walk {
+    0% {
+      transform: translate(0, 0) rotate(0deg);
+      opacity: 0;
+    }
+    10% {
+      opacity: 0.6;
+    }
+    90% {
+      opacity: 0.6;
+    }
+    100% {
+      transform: translate(100px, 80px) rotate(15deg);
+      opacity: 0;
+    }
+  }
+
+  @keyframes footsteps-walk-2 {
+    0% {
+      transform: translate(0, 0) rotate(-10deg);
+      opacity: 0;
+    }
+    10% {
+      opacity: 0.5;
+    }
+    90% {
+      opacity: 0.5;
+    }
+    100% {
+      transform: translate(-80px, 120px) rotate(20deg);
+      opacity: 0;
+    }
+  }
+
+  @keyframes footsteps-walk-3 {
+    0% {
+      transform: translate(0, 0) rotate(5deg);
+      opacity: 0;
+    }
+    10% {
+      opacity: 0.4;
+    }
+    90% {
+      opacity: 0.4;
+    }
+    100% {
+      transform: translate(60px, -50px) rotate(-20deg);
+      opacity: 0;
+    }
+  }
+
+  .animate-footsteps-1 {
+    animation: footsteps-walk 6s ease-in-out infinite;
+  }
+
+  .animate-footsteps-2 {
+    animation: footsteps-walk-2 8s ease-in-out infinite;
+    animation-delay: 2s;
+  }
+
+  .animate-footsteps-3 {
+    animation: footsteps-walk-3 7s ease-in-out infinite;
+    animation-delay: 4s;
+  }
 }
