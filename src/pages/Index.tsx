@@ -1043,7 +1043,7 @@ const Index = () => {
               Скорее вступай и не пропусти всё самое важное 🪄
             </p>
             <a 
-              href="https://t.me/+ueXQ5PBXV0tiNzZi" 
+              href="https://vk.me/join/Jo2eUpmbRbdtxOXYkpf1EChCRX3xfEY3jzY=" 
               target="_blank" 
               rel="noopener noreferrer"
               className="inline-block"
