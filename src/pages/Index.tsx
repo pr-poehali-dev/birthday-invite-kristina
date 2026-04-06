@@ -20,6 +20,8 @@ const Index = () => {
   const [showSpellBook, setShowSpellBook] = useState(false);
   const [showMagicRules, setShowMagicRules] = useState(false);
   const [balloons, setBalloons] = useState<Array<{ id: number; left: string; delay: string; duration: string; number: string }>>([]);
+  const [showScroll, setShowScroll] = useState(true);
+  const [scrollPhase, setScrollPhase] = useState<'unrolling' | 'visible' | 'closing'>('unrolling');
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const owlSoundRef = useRef<HTMLAudioElement | null>(null);
   const hatSoundRef = useRef<HTMLAudioElement | null>(null);
@@ -50,6 +52,11 @@ const Index = () => {
       setBalloons(newBalloons);
     };
     generateBalloons();
+
+    // Magic scroll intro
+    const t1 = setTimeout(() => setScrollPhase('visible'), 800);
+    const t2 = setTimeout(() => setScrollPhase('closing'), 5000);
+    const t3 = setTimeout(() => setShowScroll(false), 5700);
 
     // Toggle between Kristina and McGonagall every 2 seconds
     const nameToggle = setInterval(() => {
@@ -94,6 +101,9 @@ const Index = () => {
 
     return () => {
       clearInterval(nameToggle);
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(t3);
       if (audioRef.current) {
         audioRef.current.pause();
         audioRef.current = null;
@@ -297,6 +307,52 @@ const Index = () => {
           </div>
         </div>
       </div>
+
+      {/* Magic Scroll Intro */}
+      {showScroll && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center pointer-events-none">
+          <div
+            className="relative flex flex-col items-center"
+            style={{
+              animation: scrollPhase === 'unrolling'
+                ? 'scroll-unroll 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards'
+                : scrollPhase === 'closing'
+                ? 'scroll-close 0.7s cubic-bezier(0.55, 0, 0.45, 1) forwards'
+                : undefined
+            }}
+          >
+            {/* Top roller */}
+            <div className="w-80 h-5 rounded-full shadow-xl" style={{ background: 'linear-gradient(90deg, #B8860B, #FFD700, #FFF8DC, #FFD700, #B8860B)' }} />
+            
+            {/* Scroll body */}
+            <div
+              className="w-80 flex flex-col items-center px-8 py-6 shadow-2xl relative overflow-hidden"
+              style={{
+                background: 'linear-gradient(160deg, #fdf6e3 0%, #f5e6c8 40%, #ede0b0 100%)',
+                borderLeft: '4px solid #DAA520',
+                borderRight: '4px solid #DAA520',
+              }}
+            >
+              {/* Texture lines */}
+              <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'repeating-linear-gradient(0deg, #8B6914, #8B6914 1px, transparent 1px, transparent 28px)' }} />
+              
+              <p className="text-center font-cinzel text-amber-900 text-xs tracking-widest mb-3 uppercase opacity-70">Министерство Магии</p>
+              <div className="w-12 h-px bg-amber-700 opacity-40 mb-3" />
+              <p className="text-center font-cinzel text-amber-900 text-lg font-bold leading-snug mb-2" style={{ textShadow: '0 1px 2px rgba(139,100,20,0.3)' }}>
+                Вам доставлено\nприглашение
+              </p>
+              <p className="text-center font-cormorant text-amber-800 text-base italic leading-relaxed mt-1">
+                Дорогой гость, ты приглашён на день рождения Кристины — волшебное торжество в честь 25 лет!
+              </p>
+              <div className="w-12 h-px bg-amber-700 opacity-40 mt-4" />
+              <p className="text-center font-cinzel text-amber-700 text-xs mt-3 tracking-wider">✦ Hogwarts Awaits ✦</p>
+            </div>
+
+            {/* Bottom roller */}
+            <div className="w-80 h-5 rounded-full shadow-xl" style={{ background: 'linear-gradient(90deg, #B8860B, #FFD700, #FFF8DC, #FFD700, #B8860B)' }} />
+          </div>
+        </div>
+      )}
 
       {/* Animated stars */}
       <div className="fixed inset-0 pointer-events-none">

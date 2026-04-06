@@ -288,6 +288,39 @@
     animation: float-up linear infinite;
   }
 
+  /* Magic scroll intro animations */
+  @keyframes scroll-unroll {
+    0% {
+      opacity: 0;
+      transform: scaleY(0.05);
+      transform-origin: center center;
+    }
+    60% {
+      opacity: 1;
+      transform: scaleY(1.04);
+    }
+    100% {
+      opacity: 1;
+      transform: scaleY(1);
+    }
+  }
+
+  @keyframes scroll-close {
+    0% {
+      opacity: 1;
+      transform: scaleY(1);
+      transform-origin: center center;
+    }
+    40% {
+      opacity: 1;
+      transform: scaleY(1.03);
+    }
+    100% {
+      opacity: 0;
+      transform: scaleY(0.05);
+    }
+  }
+
   /* Foil balloon shimmer effect */
   .foil-balloon svg {
     animation: foil-shimmer 3s ease-in-out infinite;
